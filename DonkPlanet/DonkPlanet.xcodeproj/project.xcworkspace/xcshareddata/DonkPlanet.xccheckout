@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C1BAC869-AFC7-46E8-BB98-D18DC1E131CF</string>
+	<key>IDESourceControlProjectName</key>
+	<string>DonkPlanet</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>13956752A7709E1126BF1D55422207BFB3328667</key>
+		<string>https://github.com/pkc456/InstagramClone.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>DonkPlanet/DonkPlanet.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>13956752A7709E1126BF1D55422207BFB3328667</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/pkc456/InstagramClone.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>13956752A7709E1126BF1D55422207BFB3328667</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>13956752A7709E1126BF1D55422207BFB3328667</string>
+			<key>IDESourceControlWCCName</key>
+			<string>InstagramClone</string>
+		</dict>
+	</array>
+</dict>
+</plist>

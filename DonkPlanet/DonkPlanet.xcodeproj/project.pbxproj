@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4193790F1A9259F7006B3474 /* RageIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4193790E1A9259F7006B3474 /* RageIAPHelper.m */; };
+		419379121A925B29006B3474 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 419379111A925B29006B3474 /* IAPHelper.m */; };
 		8447596C1A80DB2000650C13 /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 8447596B1A80DB2000650C13 /* phone.png */; };
 		844759711A80DE4B00650C13 /* InfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8447596F1A80DE4B00650C13 /* InfoCell.m */; };
 		844759721A80DE4B00650C13 /* InfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844759701A80DE4B00650C13 /* InfoCell.xib */; };
@@ -160,6 +162,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4193790D1A9259F7006B3474 /* RageIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RageIAPHelper.h; sourceTree = "<group>"; };
+		4193790E1A9259F7006B3474 /* RageIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RageIAPHelper.m; sourceTree = "<group>"; };
+		419379101A925B29006B3474 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		419379111A925B29006B3474 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		8447596B1A80DB2000650C13 /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
 		8447596E1A80DE4B00650C13 /* InfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoCell.h; path = InfoCell/InfoCell.h; sourceTree = "<group>"; };
 		8447596F1A80DE4B00650C13 /* InfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoCell.m; path = InfoCell/InfoCell.m; sourceTree = "<group>"; };
@@ -332,11 +338,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				844821FA1A76A0DC00CBF68A /* StoreKit.framework in Frameworks */,
 				844821F61A76A0DC00CBF68A /* libsqlite3.dylib in Frameworks */,
 				844821F71A76A0DC00CBF68A /* libz.dylib in Frameworks */,
 				844821F81A76A0DC00CBF68A /* QuartzCore.framework in Frameworks */,
 				844821F91A76A0DC00CBF68A /* Security.framework in Frameworks */,
-				844821FA1A76A0DC00CBF68A /* StoreKit.framework in Frameworks */,
 				844821FB1A76A0DC00CBF68A /* SystemConfiguration.framework in Frameworks */,
 				844821EF1A76A09B00CBF68A /* MobileCoreServices.framework in Frameworks */,
 				844821EC1A76A08D00CBF68A /* CoreGraphics.framework in Frameworks */,
@@ -361,6 +367,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4193790C1A9259D9006B3474 /* IAP Helper */ = {
+			isa = PBXGroup;
+			children = (
+				419379101A925B29006B3474 /* IAPHelper.h */,
+				419379111A925B29006B3474 /* IAPHelper.m */,
+				4193790D1A9259F7006B3474 /* RageIAPHelper.h */,
+				4193790E1A9259F7006B3474 /* RageIAPHelper.m */,
+			);
+			path = "IAP Helper";
+			sourceTree = "<group>";
+		};
 		8447596D1A80DE2800650C13 /* InfoCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -639,6 +656,7 @@
 		84E348051A6D891C00FDAF4B /* DonkPlanet */ = {
 			isa = PBXGroup;
 			children = (
+				4193790C1A9259D9006B3474 /* IAP Helper */,
 				84FE34DF1A8CD07D003F7EF0 /* UsersView */,
 				84FE34D91A8CAD98003F7EF0 /* CollectionPosts */,
 				84475A0A1A8283DB00650C13 /* SearchCollectionCell */,
@@ -1013,8 +1031,10 @@
 				8447599F1A8225AF00650C13 /* DPTabbarController.m in Sources */,
 				844759DC1A8249C400650C13 /* CaptureViewController.m in Sources */,
 				84E348361A6D8A0400FDAF4B /* NewsViewController.m in Sources */,
+				419379121A925B29006B3474 /* IAPHelper.m in Sources */,
 				84E348391A6D8A2B00FDAF4B /* ProfileViewController.m in Sources */,
 				84E3483E1A6D8A5A00FDAF4B /* HomeViewController.m in Sources */,
+				4193790F1A9259F7006B3474 /* RageIAPHelper.m in Sources */,
 				84E348511A6D953A00FDAF4B /* Constants.m in Sources */,
 				844821C41A7621D000CBF68A /* DPFunctions.m in Sources */,
 				844759711A80DE4B00650C13 /* InfoCell.m in Sources */,

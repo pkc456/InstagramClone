@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CollectionPosts">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label hidden="YES" opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No posts found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97F-ej-KSo">
+                    <rect key="frame" x="60" y="75" width="200" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="eiH-hc-6RI"/>
+                        <constraint firstAttribute="width" constant="200" id="qP6-uo-WOe"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="O0R-NK-DaF">
+                    <rect key="frame" x="150" y="85" width="20" height="20"/>
+                </activityIndicatorView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="puq-no-JWg">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yYf-tF-jjY">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="ndK-hc-pNH"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="orG-0L-rsC"/>
+                    </connections>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="puq-no-JWg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="BEC-wU-nxF"/>
+                <constraint firstAttribute="centerX" secondItem="97F-ej-KSo" secondAttribute="centerX" id="X90-Pc-LGm"/>
+                <constraint firstAttribute="trailing" secondItem="puq-no-JWg" secondAttribute="trailing" id="YzC-3Q-dfK"/>
+                <constraint firstAttribute="bottom" secondItem="puq-no-JWg" secondAttribute="bottom" id="aTf-xP-8UK"/>
+                <constraint firstItem="97F-ej-KSo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="75" id="agq-Ni-QdR"/>
+                <constraint firstAttribute="centerX" secondItem="O0R-NK-DaF" secondAttribute="centerX" id="d9Q-Wi-XBL"/>
+                <constraint firstItem="puq-no-JWg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eVm-Ol-pAf"/>
+                <constraint firstItem="O0R-NK-DaF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="85" id="vxY-Wx-lTO"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <connections>
+                <outlet property="activityLoading" destination="O0R-NK-DaF" id="5di-BQ-AxB"/>
+                <outlet property="collectionPosts" destination="puq-no-JWg" id="6vg-MW-q7F"/>
+                <outlet property="lblNoPosts" destination="97F-ej-KSo" id="sIg-0K-heR"/>
+            </connections>
+            <point key="canvasLocation" x="80.5" y="216.5"/>
+        </view>
+    </objects>
+</document>

@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface SearchViewController : UIViewController
-
+{
+    NSArray *_products;
+    NSNumberFormatter * _priceFormatter;    
+}
 
 @end
 

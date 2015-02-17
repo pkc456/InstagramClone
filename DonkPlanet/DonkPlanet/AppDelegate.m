@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Constants.h"
+#import "RageIAPHelper.h"
 
 @interface AppDelegate ()
 
@@ -39,6 +40,8 @@
     
     [self setUserDefaults];
     [self setAppDefaults];
+    [RageIAPHelper sharedInstance];
+
     return YES;
 }
 

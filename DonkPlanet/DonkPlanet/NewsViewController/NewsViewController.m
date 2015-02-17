@@ -8,6 +8,8 @@
 
 #import "NewsViewController.h"
 #import "InfoCell.h"
+#import "RageIAPHelper.h"
+#import <StoreKit/StoreKit.h>
 
 static NSString *REUSENewsCell = @"InfoCell";
 
@@ -43,6 +45,9 @@ static NSString *REUSENewsCell = @"InfoCell";
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)btnRestoreAction:(id)sender {
+    [[RageIAPHelper sharedInstance] restoreCompletedTransactions];
+}
 
 #pragma mark - Setup View
 

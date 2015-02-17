@@ -8,6 +8,8 @@
 
 #import "SearchViewController.h"
 #import "SearchCollectionCell.h"
+#import "RageIAPHelper.h"
+#import <StoreKit/StoreKit.h>
 
 static NSString *REUSESearchCell = @"REUSECollectionSearch";
 
@@ -31,9 +33,46 @@ static NSString *REUSESearchCell = @"REUSECollectionSearch";
     [self setupSearchView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)productPurchased:(NSNotification *)notification {
+    
+    NSString * productIdentifier = notification.object;
+    [_products enumerateObjectsUsingBlock:^(SKProduct * product, NSUInteger idx, BOOL *stop) {
+        if ([product.productIdentifier isEqualToString:productIdentifier]) {
+            NSLog(@"Product is purchased");
+    #warning update the home view video showing limitation like enable the table row selection
+//            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+            *stop = YES;
+        }
+    }];
+    
+}
+
+- (IBAction)btnBuyAction:(id)sender {
+    _products = nil;
+
+    [[RageIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
+        if (success) {
+            _products = products;
+            
+            SKProduct *product = _products[0];
+            NSLog(@"Buying %@...", product.productIdentifier);
+            [[RageIAPHelper sharedInstance] buyProduct:product];
+        }
+    }];
 }
 
 #pragma mark - Setting up View

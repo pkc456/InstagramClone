@@ -138,7 +138,13 @@
                             <constraint firstItem="hsn-j6-k3I" firstAttribute="top" secondItem="lqK-DG-Mal" secondAttribute="bottom" constant="130" id="d74-Oy-72Q"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="n8M-oM-tEC"/>
+                    <navigationItem key="navigationItem" id="n8M-oM-tEC">
+                        <barButtonItem key="rightBarButtonItem" title="Buy" id="OQ2-Eg-u1P">
+                            <connections>
+                                <action selector="btnBuyAction:" destination="8rJ-Kc-sve" id="pEH-Bj-xJG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="collectionViewSearch" destination="mfO-N6-RY5" id="XDH-C9-g9Y"/>
@@ -330,7 +336,13 @@
                             <constraint firstItem="uu9-WW-R4z" firstAttribute="top" secondItem="s6W-VU-nit" secondAttribute="bottom" constant="-49" id="y7j-O9-5MM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="5Hl-q0-UO5"/>
+                    <navigationItem key="navigationItem" id="5Hl-q0-UO5">
+                        <barButtonItem key="rightBarButtonItem" title="Restore" id="Dfo-4A-MdP">
+                            <connections>
+                                <action selector="btnRestoreAction:" destination="ekV-e2-dca" id="jSA-xz-Zux"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tblNews" destination="s6W-VU-nit" id="pgf-fI-OUp"/>
                     </connections>

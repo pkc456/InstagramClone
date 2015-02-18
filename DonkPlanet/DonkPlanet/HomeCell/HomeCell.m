@@ -50,6 +50,67 @@
     // Configure the view for the selected state
 }
 
+- (void)prepareForReuse {
+    
+    [imgViewPost setImage:[UIImage imageNamed:@"placeholder"]];
+    [avPlayer pause];
+    
+    [avPlayer removeObserver:self forKeyPath:@"rate" context:nil];
+    
+    avPlayer = nil;
+    
+    for (AVPlayerLayer *avLayer in viewVideo.layer.sublayers) {
+        [avLayer setPlayer:nil];
+        [avLayer removeFromSuperlayer];
+    }
+}
+
+- (void)setTimeElapsedForDate:(NSDate *)startDate {
+    
+    NSInteger timeToDisplay = 0;
+    
+    NSCalendar *gregorian = [[NSCalendar alloc]
+                             initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    
+    NSUInteger unitFlags = NSCalendarUnitSecond | NSCalendarUnitMinute | NSCalendarUnitHour | NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear;
+    
+    NSDateComponents *components = [gregorian components:unitFlags
+                                                fromDate:startDate
+                                                  toDate:[NSDate date] options:0];
+    timeToDisplay = [components second];
+    
+    NSString *strSpecifier = @"s";
+    
+    if ([components minute]) {
+        timeToDisplay = [components minute];
+        strSpecifier = @"m";
+    }
+    if ([components hour]) {
+        timeToDisplay = [components hour];
+        strSpecifier = @"h";
+    }
+    if ([components day]) {
+        timeToDisplay = [components day];
+        strSpecifier = @"d";
+    }
+    if ([components month]) {
+        timeToDisplay = [components month];
+        strSpecifier = @"m";
+    }
+    if ([components year]) {
+        timeToDisplay = [components year];
+        strSpecifier = @"y";
+    }
+//    timeToDisplay = [components minute] ? [components minute] : timeToDisplay;
+//    timeToDisplay = [components hour] ? [components hour] : timeToDisplay;
+//    timeToDisplay = [components day] ? [components day] : timeToDisplay;
+//    timeToDisplay = [components month] ? [components month] : timeToDisplay;
+//    timeToDisplay = [components year] ? [components year] : timeToDisplay;
+    
+    NSLog(@"Time to Display : %d", timeToDisplay);
+    [lblTime setText:[NSString stringWithFormat:@"%d%@", timeToDisplay, strSpecifier]];
+}
+
 - (void)hideMovieControls:(BOOL)toHide {
     
     [imgViewPost setHidden:!toHide];
@@ -71,21 +132,7 @@
 //                       @"Shawn Simon"];
 //    [query whereKey:@"playerName" containedIn:names];
     
-    /*
-    NSDate *startDate = ...;
-    NSDate *endDate = ...;
-    
-    NSCalendar *gregorian = [[NSCalendar alloc]
-                             initWithCalendarIdentifier:NSGregorianCalendar];
-    
-    NSUInteger unitFlags = NSMonthCalendarUnit | NSDayCalendarUnit;
-    
-    NSDateComponents *components = [gregorian components:unitFlags
-                                                fromDate:startDate
-                                                  toDate:endDate options:0];
-    NSInteger months = [components month];
-    NSInteger days = [components day];
-    */
+    [self setTimeElapsedForDate:objPost.createdAt];
     
     PFUser *user = [objPost objectForKey:poUserPointer];
     

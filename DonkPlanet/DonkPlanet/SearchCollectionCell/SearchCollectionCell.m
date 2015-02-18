@@ -18,13 +18,17 @@
 
 - (void)fillSearchCellWithObject:(PFObject *)objSearched {
     
-    [imgSearch setImage:nil];
+    [imgSearch setImage:[UIImage imageNamed:@"placeholder"]];
     PFFile *fileImage = [objSearched objectForKey:@"filePosted"];
     [fileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
             [imgSearch setImage:[UIImage imageWithData:data]];
         }
     }];
+}
+
+- (void)prepareForReuse {
+    [imgSearch setImage:[UIImage imageNamed:@"placeholder"]];
 }
 
 @end

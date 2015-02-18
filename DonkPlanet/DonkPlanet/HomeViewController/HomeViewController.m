@@ -103,6 +103,7 @@
                 else
                     [arrVideos addObject:objAtIndex];
             }
+            [dictPosts removeAllObjects];
             [dictPosts setObject:arrImages forKey:[NSNumber numberWithInt:PostTypeImage]];
             [dictPosts setObject:arrVideos forKey:[NSNumber numberWithInt:PostTypeVideo]];
             

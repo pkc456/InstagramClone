@@ -11,7 +11,7 @@
 
 static NSString *REUSEUserCell = @"REUSEUserCell";
 
-@interface UsersView () <UITableViewDataSource, UITableViewDelegate> {
+@interface UsersView () <UITableViewDataSource, UITableViewDelegate, UserCellUnFollow> {
     
     __weak IBOutlet UILabel *lblNothing;
     __weak IBOutlet UIActivityIndicatorView *activityLoading;
@@ -77,6 +77,13 @@ static NSString *REUSEUserCell = @"REUSEUserCell";
     }
 }
 
+#pragma mark - User Cell Delegate
+
+- (void)userUnFollowed {
+    if ([self.delegate respondsToSelector:@selector(updateFollowingUsers)])
+        [self.delegate updateFollowingUsers];
+}
+
 #pragma mark - UITableView Delegate and DataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -86,6 +93,7 @@ static NSString *REUSEUserCell = @"REUSEUserCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UserCell *objUserCell = (UserCell *)[tableView dequeueReusableCellWithIdentifier:REUSEUserCell forIndexPath:indexPath];
+    [objUserCell setDelegate:self];
     if (self.deviceContacts) {
         [objUserCell fillUserCellForIndex:[arrToShow objectAtIndex:indexPath.row]];
     }

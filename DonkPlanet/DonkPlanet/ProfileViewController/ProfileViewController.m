@@ -14,7 +14,7 @@
 #import "CollectionPosts.h"
 #import "UsersView.h"
 
-@interface ProfileViewController () <UIAlertViewDelegate> {
+@interface ProfileViewController () <UIAlertViewDelegate, UsersViewDelegate> {
     
     __weak IBOutlet UIImageView *imgProfile;
     __weak IBOutlet UILabel *lblName;
@@ -65,6 +65,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self fetchFollowers];
+    [self fetchFollowing];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -185,6 +186,11 @@
                            onButton:btnFollowers];
         }
     }];
+}
+
+- (void)fetchFollowing {
+    
+    PFUser *currentUser = [PFUser currentUser];
     
     PFQuery *followingQuery = [PFQuery queryWithClassName:@"Follow"];
     [followingQuery whereKey:@"follower" equalTo:currentUser];
@@ -192,6 +198,7 @@
         boolFollowingFetched = YES;
         if (!error) {
             arrFollowing = [[NSMutableArray alloc] initWithArray:objects];
+            [(UsersView *)viewCurrent setArrayToShow:arrFollowing];
             [self setAttributedText:@"following"
                          withNumber:objects.count
                            onButton:btnFollowing];
@@ -446,6 +453,7 @@
     BOOL errorFetching = ([sender tag] == 1) ? errorFetchingFollowers : errorFetchingFollowing;
     BOOL usersFetched = ([sender tag] == 1) ? boolFollowersFetched : boolFollowingFetched;
     
+    [(UsersView *)viewCurrent setDelegate:self];
     [(UsersView *)viewCurrent setFetched:usersFetched];
     [(UsersView *)viewCurrent setErrorFetch:errorFetching];
     [(UsersView *)viewCurrent setFollowers:([sender tag] == 1)];
@@ -503,6 +511,8 @@
 
 - (IBAction)closeKnownUserViewAction:(UIButton *)sender {
 
+    [self fetchFollowing];
+    
     [[self.navigationItem rightBarButtonItem] setEnabled:YES];
     [[self.navigationItem leftBarButtonItem] setEnabled:YES];
     
@@ -510,6 +520,12 @@
     [viewBack.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [viewBack removeFromSuperview];
     viewBack = nil;
+}
+
+#pragma mark - UsersView Delegate
+
+- (void)updateFollowingUsers {
+    [self fetchFollowing];
 }
 
 #pragma mark - UIAlertView Delegate

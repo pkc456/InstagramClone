@@ -151,6 +151,8 @@
                 [followUser deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     if (succeeded){
                         [self updateButtonForAction:TypeFollow];
+                        if ([self.delegate respondsToSelector:@selector(userUnFollowed)])
+                            [self.delegate userUnFollowed];
                         NSLog(@"BOOOOOM"); // this is my function to refresh the data
                     } else {
                         NSLog(@"DELETE ERRIR");

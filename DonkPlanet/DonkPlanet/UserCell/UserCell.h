@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol UserCellUnFollow <NSObject>
+
+- (void)userUnFollowed;
+
+@end
+
 @interface UserCell : UITableViewCell
+
+@property (assign, nonatomic) id<UserCellUnFollow> delegate;
 
 - (void)fillUserCellForIndex:(PFUser *)user;
 - (void)fillUserCellForFollower:(BOOL)follower

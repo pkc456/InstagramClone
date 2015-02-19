@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		4193790F1A9259F7006B3474 /* RageIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4193790E1A9259F7006B3474 /* RageIAPHelper.m */; };
 		419379121A925B29006B3474 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 419379111A925B29006B3474 /* IAPHelper.m */; };
-		840A0A331A95C09D007AE009 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 840A0A311A95C09D007AE009 /* logout.png */; };
 		840A0A341A95C09D007AE009 /* logout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 840A0A321A95C09D007AE009 /* logout@2x.png */; };
 		840A0A3F1A9623DC007AE009 /* deviceContacts.png in Resources */ = {isa = PBXBuildFile; fileRef = 840A0A3D1A9623DC007AE009 /* deviceContacts.png */; };
 		840A0A401A9623DC007AE009 /* devicecontacts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 840A0A3E1A9623DC007AE009 /* devicecontacts@2x.png */; };
 		840A0A431A96315A007AE009 /* crossButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 840A0A411A96315A007AE009 /* crossButton.png */; };
 		840A0A441A96315A007AE009 /* crossButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 840A0A421A96315A007AE009 /* crossButton@2x.png */; };
+		840A0A461A965122007AE009 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 840A0A451A965122007AE009 /* logout.png */; };
 		844759711A80DE4B00650C13 /* InfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8447596F1A80DE4B00650C13 /* InfoCell.m */; };
 		844759721A80DE4B00650C13 /* InfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844759701A80DE4B00650C13 /* InfoCell.xib */; };
 		8447599F1A8225AF00650C13 /* DPTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8447599E1A8225AF00650C13 /* DPTabbarController.m */; };
@@ -173,12 +173,12 @@
 		4193790E1A9259F7006B3474 /* RageIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RageIAPHelper.m; sourceTree = "<group>"; };
 		419379101A925B29006B3474 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
 		419379111A925B29006B3474 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
-		840A0A311A95C09D007AE009 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
 		840A0A321A95C09D007AE009 /* logout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout@2x.png"; sourceTree = "<group>"; };
 		840A0A3D1A9623DC007AE009 /* deviceContacts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deviceContacts.png; sourceTree = "<group>"; };
 		840A0A3E1A9623DC007AE009 /* devicecontacts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "devicecontacts@2x.png"; sourceTree = "<group>"; };
 		840A0A411A96315A007AE009 /* crossButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crossButton.png; sourceTree = "<group>"; };
 		840A0A421A96315A007AE009 /* crossButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "crossButton@2x.png"; sourceTree = "<group>"; };
+		840A0A451A965122007AE009 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
 		8447596E1A80DE4B00650C13 /* InfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoCell.h; path = InfoCell/InfoCell.h; sourceTree = "<group>"; };
 		8447596F1A80DE4B00650C13 /* InfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoCell.m; path = InfoCell/InfoCell.m; sourceTree = "<group>"; };
 		844759701A80DE4B00650C13 /* InfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoCell.xib; path = InfoCell/InfoCell.xib; sourceTree = "<group>"; };
@@ -603,7 +603,7 @@
 				840A0A421A96315A007AE009 /* crossButton@2x.png */,
 				840A0A3D1A9623DC007AE009 /* deviceContacts.png */,
 				840A0A3E1A9623DC007AE009 /* devicecontacts@2x.png */,
-				840A0A311A95C09D007AE009 /* logout.png */,
+				840A0A451A965122007AE009 /* logout.png */,
 				840A0A321A95C09D007AE009 /* logout@2x.png */,
 				845D28521A70A7D70025FC21 /* friends.png */,
 				845D28531A70A7D70025FC21 /* friends@2x.png */,
@@ -1005,6 +1005,7 @@
 				844759C31A822BE900650C13 /* searchUnsel@2x.png in Resources */,
 				845D28741A70A7D70025FC21 /* username@2x.png in Resources */,
 				844759D31A8236F600650C13 /* refresh_icon.png in Resources */,
+				840A0A461A965122007AE009 /* logout.png in Resources */,
 				844759C01A822BE900650C13 /* searchSel.png in Resources */,
 				84D737911A77ADF50097B80E /* HomeCell.xib in Resources */,
 				844759C41A822BE900650C13 /* userSel.png in Resources */,
@@ -1024,7 +1025,6 @@
 				845D28731A70A7D70025FC21 /* username.png in Resources */,
 				84475A051A82602300650C13 /* photo_icon@2x.png in Resources */,
 				844759E51A824F2500650C13 /* blue_bg_cam@2x.png in Resources */,
-				840A0A331A95C09D007AE009 /* logout.png in Resources */,
 				844759E81A824F2500650C13 /* movie_icon.png in Resources */,
 				844759B81A822BE900650C13 /* heartSel.png in Resources */,
 				84475A111A8285FA00650C13 /* flower.jpg in Resources */,

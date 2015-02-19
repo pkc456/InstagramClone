@@ -105,9 +105,9 @@
     
     NSString *otherUser = follower ? @"follower" : @"following";
     
-    PFUser *thisUser = [thisObject objectForKey:otherUser];
-    [lblUsername setText:thisUser.username];
-    [self checkUserStatusWithUser:thisUser];
+    thisCellUser = [thisObject objectForKey:otherUser];
+    [lblUsername setText:thisCellUser.username];
+    [self checkUserStatusWithUser:thisCellUser];
 }
 
 #pragma mark - IBAction Follow/ing

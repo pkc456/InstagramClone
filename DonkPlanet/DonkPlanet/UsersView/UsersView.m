@@ -93,7 +93,7 @@ static NSString *REUSEUserCell = @"REUSEUserCell";
         [objUserCell fillUserCellForFollower:self.followers
                                andUserObject:[arrToShow objectAtIndex:indexPath.row]];
     }
-    [objUserCell fillUserCellForIndex:[arrToShow objectAtIndex:indexPath.row]];
+//    [objUserCell fillUserCellForIndex:[arrToShow objectAtIndex:indexPath.row]];
     return objUserCell;
 }
 

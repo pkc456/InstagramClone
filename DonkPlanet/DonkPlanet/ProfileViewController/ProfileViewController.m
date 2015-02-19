@@ -431,6 +431,7 @@
         UINib *nibUsersView = [UINib nibWithNibName:@"UsersView" bundle:nil];
         UsersView *viewUsers = [[nibUsersView instantiateWithOwner:self options:nil] objectAtIndex:0];
         [viewUsers setFrame:CGRectMake(0, 0, viewExtension.frame.size.width, viewExtension.frame.size.height)];
+        [viewUsers setDeviceContacts:NO];
         objUsersView = viewUsers;
         
         [viewExtension addSubview:objUsersView];
@@ -478,6 +479,7 @@
         UINib *nibUsersView = [UINib nibWithNibName:@"UsersView" bundle:nil];
         UsersView *viewUsers = [[nibUsersView instantiateWithOwner:self options:nil] objectAtIndex:0];
         [viewUsers setFrame:CGRectMake(10, 10, viewBack.frame.size.width - 20, viewBack.frame.size.height - 69)];
+        [viewUsers setDeviceContacts:YES];
         objViewContacts = viewUsers;
         [objViewContacts.layer setCornerRadius:4.0f];
     }

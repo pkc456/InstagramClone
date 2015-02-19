@@ -138,9 +138,8 @@
 
     PFFile *userImage = user[@"profileImage"];
     [userImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-    if (!error) {
+    if (!error)
             [imgViewProfile setImage:[UIImage imageWithData:data]];
-        }
     }];
     
     [lblCaption setText:[objPost objectForKey:poFileDesc]];
@@ -153,9 +152,7 @@
         PFFile *fileVideo = [objPost objectForKey:poFilePosted];
         
         NSURL *fileURL = [NSURL URLWithString:fileVideo.url];
-//        avPlayer = [AVPlayer playerWithURL:fileURL];
         if (!avPlayer) {
-            
             [btnPlayPause setTag:rowNumber];
             
             avPlayer = [[AVPlayer alloc] initWithURL:fileURL];

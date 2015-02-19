@@ -556,8 +556,6 @@
 		845D28441A70A7D70025FC21 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				84C53CCD1A94C7AA000A117F /* 2minute.mov */,
-				84FE34E51A8CD7C8003F7EF0 /* 1minute.mov */,
 				84C9C8D11A8537F300814AEB /* Post */,
 				844759DD1A824F2500650C13 /* Camera */,
 				844759C81A8236F600650C13 /* Home */,
@@ -574,6 +572,8 @@
 				8465BE231A88AC09008A3AA7 /* placeholder@2x.png */,
 				84D737881A7759E30097B80E /* back_icon.png */,
 				84D737891A7759E30097B80E /* back_icon@2x.png */,
+				84C53CCD1A94C7AA000A117F /* 2minute.mov */,
+				84FE34E51A8CD7C8003F7EF0 /* 1minute.mov */,
 			);
 			path = Images;
 			sourceTree = "<group>";

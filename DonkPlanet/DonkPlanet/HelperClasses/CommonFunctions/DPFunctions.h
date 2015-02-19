@@ -24,6 +24,12 @@ typedef NS_ENUM(NSUInteger, PostType) {
     PostTypeVideo
 };
 
+typedef NS_ENUM(NSUInteger, FollowType) {
+    TypeFollow,
+    TypeFollowing,
+    TypeFollowed
+};
+
 @interface DPFunctions : NSObject {
     CGRect screenRect;
 }

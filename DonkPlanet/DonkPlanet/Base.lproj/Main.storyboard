@@ -401,17 +401,6 @@
                                                 </constraints>
                                                 <state key="normal">
                                                     <attributedString key="attributedTitle">
-                                                        <fragment content="129">
-                                                            <attributes>
-                                                                <color key="NSColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                        <fragment content=" ">
-                                                            <attributes>
-                                                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
-                                                            </attributes>
-                                                        </fragment>
                                                         <fragment content="posts">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
@@ -424,20 +413,14 @@
                                                     <action selector="buttonShowPostsAction:" destination="vyR-ws-XnO" eventType="touchUpInside" id="RJa-ec-0Pz"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jAQ-yu-2HK">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jAQ-yu-2HK">
                                                 <rect key="frame" x="200" y="0.0" width="200" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="bgO-8k-cFi"/>
                                                 </constraints>
                                                 <state key="normal">
                                                     <attributedString key="attributedTitle">
-                                                        <fragment content="186">
-                                                            <attributes>
-                                                                <color key="NSColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                        <fragment content=" followers">
+                                                        <fragment content="followers">
                                                             <attributes>
                                                                 <color key="NSColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <font key="NSFont" size="13" name="HelveticaNeue-Light"/>
@@ -449,20 +432,14 @@
                                                     <action selector="buttonShowFollowersAction:" destination="vyR-ws-XnO" eventType="touchUpInside" id="n6g-GI-zXc"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tgL-09-5IV">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tgL-09-5IV">
                                                 <rect key="frame" x="400" y="0.0" width="200" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="LQp-wc-XzT"/>
                                                 </constraints>
                                                 <state key="normal">
                                                     <attributedString key="attributedTitle">
-                                                        <fragment content="16">
-                                                            <attributes>
-                                                                <color key="NSColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                        <fragment content=" following">
+                                                        <fragment content="following">
                                                             <attributes>
                                                                 <color key="NSColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <font key="NSFont" size="13" name="HelveticaNeue-Light"/>
@@ -471,7 +448,7 @@
                                                     </attributedString>
                                                 </state>
                                                 <connections>
-                                                    <action selector="buttonShowFollowingAction:" destination="vyR-ws-XnO" eventType="touchUpInside" id="sGO-3E-Pvh"/>
+                                                    <action selector="buttonShowFollowersAction:" destination="vyR-ws-XnO" eventType="touchUpInside" id="ZIU-AF-s2z"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -506,10 +483,10 @@
                                     <constraint firstItem="FmW-Zz-zkh" firstAttribute="top" secondItem="DKy-K9-PpZ" secondAttribute="top" constant="10" id="RyS-3B-fOi"/>
                                     <constraint firstAttribute="height" constant="130" id="X7I-Y1-zc2"/>
                                     <constraint firstItem="SS1-EU-End" firstAttribute="leading" secondItem="FmW-Zz-zkh" secondAttribute="trailing" constant="15" id="YXf-kc-6zx"/>
-                                    <constraint firstItem="sUZ-UK-khT" firstAttribute="top" secondItem="DKy-K9-PpZ" secondAttribute="top" constant="14" id="aca-IY-chj"/>
                                     <constraint firstItem="FmW-Zz-zkh" firstAttribute="leading" secondItem="DKy-K9-PpZ" secondAttribute="leading" constant="10" id="eqZ-W4-okd"/>
                                     <constraint firstAttribute="trailing" secondItem="6zB-b9-2C6" secondAttribute="trailing" id="yxY-5O-19J"/>
                                     <constraint firstAttribute="trailing" secondItem="SS1-EU-End" secondAttribute="trailing" constant="10" id="zvQ-ku-Xkc"/>
+                                    <constraint firstItem="sUZ-UK-khT" firstAttribute="top" secondItem="DKy-K9-PpZ" secondAttribute="top" constant="14" id="zzE-1s-fr1"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g8e-Gk-l7Y">
@@ -529,7 +506,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Yfq-za-hjr">
-                        <barButtonItem key="rightBarButtonItem" title="Logout" id="g9n-Mf-8mU">
+                        <barButtonItem key="leftBarButtonItem" image="deviceContacts.png" id="KMi-ef-2De">
+                            <connections>
+                                <action selector="barButtonContactsTapped:" destination="vyR-ws-XnO" id="tQV-AJ-A1Z"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="logout.png" id="g9n-Mf-8mU">
                             <connections>
                                 <action selector="btnLogoutAction:" destination="vyR-ws-XnO" id="q77-hP-uJU"/>
                             </connections>
@@ -1019,12 +1001,14 @@
         <image name="camera_icon.png" width="30" height="23"/>
         <image name="captionback.png" width="37" height="62"/>
         <image name="cross_icon.png" width="25" height="25"/>
+        <image name="deviceContacts.png" width="25" height="25"/>
         <image name="flashOff.png" width="15" height="22"/>
         <image name="heartSel.png" width="64" height="49"/>
         <image name="heartUnsel.png" width="64" height="49"/>
         <image name="homeSel.png" width="64" height="49"/>
         <image name="homeUnsel.png" width="64" height="49"/>
         <image name="logo_login.png" width="97" height="138"/>
+        <image name="logout.png" width="16" height="16"/>
         <image name="main_img.png" width="320" height="320"/>
         <image name="movie_icon.png" width="35" height="23"/>
         <image name="photo_icon.png" width="40" height="40"/>

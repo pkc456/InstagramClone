@@ -22,4 +22,6 @@ FOUNDATION_EXPORT NSString *const _DP_CaptureViewStrbdID;
 //  Other App Constants
 
 FOUNDATION_EXPORT NSString *const _DP_FontHelveticaNeueLight;
+FOUNDATION_EXPORT NSString *const _DP_FontHelveticaNeueBold;
+
 @end

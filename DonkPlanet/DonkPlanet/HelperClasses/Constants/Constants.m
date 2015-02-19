@@ -19,5 +19,6 @@ NSString *const _DP_CaptureViewStrbdID  = @"CaptureViewStoryboardID";
 #pragma mark - Other App Constants
 
 NSString *const _DP_FontHelveticaNeueLight = @"HelveticaNeue-Light";
+NSString *const _DP_FontHelveticaNeueBold  = @"HelveticaNeue-Bold";
 
 @end

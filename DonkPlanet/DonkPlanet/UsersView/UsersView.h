@@ -10,4 +10,11 @@
 
 @interface UsersView : UIView
 
+@property (assign, nonatomic) BOOL deviceContacts;
+@property (assign, nonatomic) BOOL followers;
+@property (assign, nonatomic) BOOL fetched;
+@property (assign, nonatomic) BOOL errorFetch;
+
+- (void)setArrayToShow:(NSMutableArray *)arrUsers;
+
 @end

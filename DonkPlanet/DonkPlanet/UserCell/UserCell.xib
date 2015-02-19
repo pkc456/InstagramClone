@@ -20,31 +20,44 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LRk-s6-ahB">
-                        <rect key="frame" x="240" y="12" width="75" height="20"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YpW-3x-XWF">
+                        <rect key="frame" x="240" y="10" width="75" height="24"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LRk-s6-ahB">
+                                <rect key="frame" x="0.0" y="0.0" width="75" height="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonFollowFollowingAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="fMv-Hg-9M0"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="fbD-uV-DyS">
+                                <rect key="frame" x="27" y="2" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="75" id="965-PC-sX6"/>
+                            <constraint firstAttribute="width" constant="75" id="Bw4-AG-GDm"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                        <state key="normal">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <connections>
-                            <action selector="buttonFollowFollowingAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="fMv-Hg-9M0"/>
-                        </connections>
-                    </button>
+                    </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="xSE-Iq-GHX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="NEc-FZ-AWY"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="xSE-Iq-GHX" secondAttribute="bottom" constant="-1" id="VFS-l3-sfb"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="LRk-s6-ahB" secondAttribute="trailing" constant="-3" id="h0f-Nu-Za3"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="LRk-s6-ahB" secondAttribute="bottom" constant="4" id="myI-xc-hep"/>
-                    <constraint firstItem="xSE-Iq-GHX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="rDI-f2-l1Z"/>
-                    <constraint firstItem="LRk-s6-ahB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="t23-PM-XrK"/>
-                    <constraint firstItem="LRk-s6-ahB" firstAttribute="leading" secondItem="xSE-Iq-GHX" secondAttribute="trailing" id="tz9-Pb-zZM"/>
+                    <constraint firstItem="YpW-3x-XWF" firstAttribute="leading" secondItem="xSE-Iq-GHX" secondAttribute="trailing" id="43Y-Po-1kp"/>
+                    <constraint firstItem="xSE-Iq-GHX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="Ffg-Za-urO"/>
+                    <constraint firstItem="YpW-3x-XWF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="Fsd-kA-pw6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="YpW-3x-XWF" secondAttribute="trailing" constant="-3" id="brB-ep-fkj"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="YpW-3x-XWF" secondAttribute="bottom" constant="2" id="d0t-JV-PDF"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="xSE-Iq-GHX" secondAttribute="bottom" constant="-1" id="tw6-06-0Ne"/>
+                    <constraint firstItem="xSE-Iq-GHX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="yRI-Cf-s8u"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="activityLoader" destination="fbD-uV-DyS" id="K8f-hd-7Tf"/>
                 <outlet property="btnFollow" destination="LRk-s6-ahB" id="HD7-Gg-yqJ"/>
                 <outlet property="lblUsername" destination="xSE-Iq-GHX" id="BDb-FX-Cpd"/>
             </connections>

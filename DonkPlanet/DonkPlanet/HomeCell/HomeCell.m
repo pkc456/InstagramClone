@@ -40,6 +40,9 @@
     poFileDesc = @"fileDesc";
     poFilePosted = @"filePosted";
     
+    [imgViewProfile.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [imgViewProfile.layer setBorderWidth:0.5f];
+    
     [imgViewPost.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [imgViewPost.layer setBorderWidth:1.0f];
 }
@@ -101,13 +104,7 @@
         timeToDisplay = [components year];
         strSpecifier = @"y";
     }
-//    timeToDisplay = [components minute] ? [components minute] : timeToDisplay;
-//    timeToDisplay = [components hour] ? [components hour] : timeToDisplay;
-//    timeToDisplay = [components day] ? [components day] : timeToDisplay;
-//    timeToDisplay = [components month] ? [components month] : timeToDisplay;
-//    timeToDisplay = [components year] ? [components year] : timeToDisplay;
-    
-    NSLog(@"Time to Display : %d", timeToDisplay);
+
     [lblTime setText:[NSString stringWithFormat:@"%d%@", timeToDisplay, strSpecifier]];
 }
 

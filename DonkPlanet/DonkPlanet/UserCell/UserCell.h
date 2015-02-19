@@ -10,4 +10,8 @@
 
 @interface UserCell : UITableViewCell
 
+- (void)fillUserCellForIndex:(PFUser *)user;
+- (void)fillUserCellForFollower:(BOOL)follower
+                  andUserObject:(PFObject *)thisObject;
+
 @end

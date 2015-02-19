@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DonkPlanet/HomeCell/HomeCell.m"
-            timestampString = "445961238.558761"
+            timestampString = "446057184.199934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
             landmarkName = "-hidePlayPauseButton"
             landmarkType = "5">
          </BreakpointContent>
@@ -153,13 +153,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DonkPlanet/HomeCell/HomeCell.m"
-            timestampString = "445961238.558761"
+            filePath = "DonkPlanet/UserCell/UserCell.m"
+            timestampString = "446056713.836879"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "-setTimeElapsedForDate:"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "-fillUserCellForFollower:andUserObject:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -170,27 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DonkPlanet/HomeCell/HomeCell.m"
-            timestampString = "445960572.560897"
+            timestampString = "446057184.199934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "-setTimeElapsedForDate:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DonkPlanet/HomeCell/HomeCell.m"
-            timestampString = "445961238.558761"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "-fillHomeCellWithWithObject:withRowNumber:withLastPlayingIndex:"
             landmarkType = "5">
          </BreakpointContent>

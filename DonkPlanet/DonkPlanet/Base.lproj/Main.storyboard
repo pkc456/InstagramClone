@@ -244,7 +244,7 @@
                                     <constraint firstAttribute="centerX" secondItem="tm2-1e-eiR" secondAttribute="centerX" constant="-0.5" id="fKZ-71-qrK"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_img.png" translatesAutoresizingMaskIntoConstraints="NO" id="2uO-KQ-SK7">
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_img.png" translatesAutoresizingMaskIntoConstraints="NO" id="2uO-KQ-SK7">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2uO-KQ-SK7" secondAttribute="height" multiplier="1:1" id="BEA-h9-htw"/>
@@ -731,6 +731,26 @@
             </objects>
             <point key="canvasLocation" x="87" y="3112"/>
         </scene>
+        <!--Post View Controller-->
+        <scene sceneID="Vsi-J5-V1y">
+            <objects>
+                <viewController storyboardIdentifier="PostViewStoryboardID" id="kgt-l5-Ntp" customClass="PostViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zjd-7m-eA0"/>
+                        <viewControllerLayoutGuide type="bottom" id="HqW-E3-BOX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ore-kT-JvY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Dv-dj-n8h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-160" y="3778"/>
+        </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="bZX-DK-v3I">
             <objects>
@@ -1008,7 +1028,7 @@
         <image name="homeSel.png" width="64" height="49"/>
         <image name="homeUnsel.png" width="64" height="49"/>
         <image name="logo_login.png" width="97" height="138"/>
-        <image name="logout.png" width="16" height="16"/>
+        <image name="logout.png" width="20" height="20"/>
         <image name="main_img.png" width="320" height="320"/>
         <image name="movie_icon.png" width="35" height="23"/>
         <image name="photo_icon.png" width="40" height="40"/>

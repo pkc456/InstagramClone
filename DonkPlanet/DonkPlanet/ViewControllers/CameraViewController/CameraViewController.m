@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Channi. All rights reserved.
 //
 
+#import <AVFoundation/AVFoundation.h>
+
 #import "CameraViewController.h"
 #import "CaptureViewController.h"
 
@@ -122,6 +124,33 @@
     [sender setImage:[UIImage imageNamed:strImageName]];
 }
 
+#pragma mark - Generating Image
+
+-(void)generateImageForVideoAtPath:(NSString *)videoPath {
+    
+    NSURL *url = [NSURL fileURLWithPath:videoPath];
+    AVURLAsset *asset=[[AVURLAsset alloc] initWithURL:url options:nil];
+    AVAssetImageGenerator *generator = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    generator.appliesPreferredTrackTransform=TRUE;
+    
+    CMTime thumbTime = CMTimeMakeWithSeconds(1,30);
+    
+    AVAssetImageGeneratorCompletionHandler handler = ^(CMTime requestedTime, CGImageRef im, CMTime actualTime, AVAssetImageGeneratorResult result, NSError *error){
+        if (result != AVAssetImageGeneratorSucceeded) {
+            NSLog(@"couldn't generate thumbnail, error:%@", error);
+        }
+        // TODO Do something with the image
+        dispatch_async(dispatch_get_main_queue(), ^ {
+            [imgPhoto setImage:[UIImage imageWithCGImage:im]];
+        });
+    };
+    
+//    CGSize maxSize = CGSizeMake(400, 400);
+//    generator.maximumSize = maxSize;
+    [generator generateCGImagesAsynchronouslyForTimes:[NSArray arrayWithObject:[NSValue valueWithCMTime:thumbTime]] completionHandler:handler];
+    
+}
+
 #pragma mark - IBAction Capture View
 
 - (IBAction)buttonVideoCameraToggleTouched:(UIButton *)sender {
@@ -139,6 +168,10 @@
 
 - (IBAction)buttonCaptureTouched:(id)sender {
     
+//    NSString *pathForFile = [[NSBundle mainBundle] pathForResource:@"2minute" ofType:@"mov"];
+//    [self generateImageForVideoAtPath:pathForFile];
+    
+    
     PFUser *currentUser = [PFUser currentUser];
     
     if (currentUser) {
@@ -149,7 +182,7 @@
         NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970];
         NSString *imageFileName = [NSString stringWithFormat:@"%@-%f.mov", userID, timeInterval];
         
-        NSString *pathForFile = [[NSBundle mainBundle] pathForResource:@"1minute" ofType:@"mov"];
+        NSString *pathForFile = [[NSBundle mainBundle] pathForResource:@"2minute" ofType:@"mov"];
         NSData *movieData = [NSData dataWithContentsOfFile:pathForFile];
         PFFile *movieFile = [PFFile fileWithName:imageFileName data:movieData];
         [movieFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -189,7 +222,7 @@
             }];
         }];
     }
-    
+
 }
 
 - (IBAction)buttonPhotoLibraryTouched:(id)sender {

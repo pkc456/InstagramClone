@@ -18,6 +18,7 @@
 FOUNDATION_EXPORT NSString *const _DP_StoryboardName;
 FOUNDATION_EXPORT NSString *const _DP_NavControllerLogin;
 FOUNDATION_EXPORT NSString *const _DP_CaptureViewStrbdID;
+FOUNDATION_EXPORT NSString *const _DP_PostViewStrbdID;
 
 //  Other App Constants
 

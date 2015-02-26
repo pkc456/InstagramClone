@@ -15,6 +15,7 @@
 NSString *const _DP_StoryboardName      = @"Main";
 NSString *const _DP_NavControllerLogin  = @"LoginNavigationController";
 NSString *const _DP_CaptureViewStrbdID  = @"CaptureViewStoryboardID";
+NSString *const _DP_PostViewStrbdID     = @"PostViewStoryboardID";
 
 #pragma mark - Other App Constants
 

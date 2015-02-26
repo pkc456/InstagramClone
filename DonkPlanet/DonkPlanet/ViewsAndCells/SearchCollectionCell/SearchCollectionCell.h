@@ -11,6 +11,7 @@
 @interface SearchCollectionCell : UICollectionViewCell {
     
     __weak IBOutlet UIImageView *imgSearch;
+    __weak IBOutlet UIImageView *imgPlay;
 }
 
 - (void)fillSearchCellWithObject:(PFObject *)objSearched;

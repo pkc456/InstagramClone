@@ -18,7 +18,9 @@
 
 - (void)fillSearchCellWithObject:(PFObject *)objSearched {
     
-    [imgSearch setImage:[UIImage imageNamed:@"placeholder"]];
+    if ([[objSearched objectForKey:@"fileType"] intValue] == PostTypeImage)
+        [imgPlay setHidden:YES];
+    
     PFFile *fileImage = [objSearched objectForKey:@"filePosted"];
     [fileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {

@@ -110,4 +110,44 @@
     loadingView = nil;
 }
 
+- (NSString *)setTimeElapsedForDate:(NSDate *)startDate {
+    
+    NSInteger timeToDisplay = 0;
+    
+    NSCalendar *gregorian = [[NSCalendar alloc]
+                             initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    
+    NSUInteger unitFlags = NSCalendarUnitSecond | NSCalendarUnitMinute | NSCalendarUnitHour | NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear;
+    
+    NSDateComponents *components = [gregorian components:unitFlags
+                                                fromDate:startDate
+                                                  toDate:[NSDate date] options:0];
+    timeToDisplay = [components second];
+    
+    NSString *strSpecifier = @"s";
+    
+    if ([components minute]) {
+        timeToDisplay = [components minute];
+        strSpecifier = @"m";
+    }
+    if ([components hour]) {
+        timeToDisplay = [components hour];
+        strSpecifier = @"h";
+    }
+    if ([components day]) {
+        timeToDisplay = [components day];
+        strSpecifier = @"d";
+    }
+    if ([components month]) {
+        timeToDisplay = [components month];
+        strSpecifier = @"m";
+    }
+    if ([components year]) {
+        timeToDisplay = [components year];
+        strSpecifier = @"y";
+    }
+    
+    return [NSString stringWithFormat:@"%d%@", timeToDisplay, strSpecifier];
+}
+
 @end

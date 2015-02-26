@@ -10,4 +10,6 @@
 
 @interface PostViewController : UIViewController
 
+@property (strong, nonatomic) PFObject *objPost;
+
 @end

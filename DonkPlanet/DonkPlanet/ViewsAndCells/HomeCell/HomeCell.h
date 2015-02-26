@@ -22,5 +22,6 @@
 - (void)fillHomeCellWithWithObject:(PFObject *)objPost
                      withRowNumber:(NSInteger)rowNumber
               withLastPlayingIndex:(NSInteger)lastIndex;
+- (void)removeAVPlayer;
 
 @end

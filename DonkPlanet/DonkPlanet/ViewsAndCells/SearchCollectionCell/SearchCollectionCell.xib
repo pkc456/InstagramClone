@@ -15,13 +15,20 @@
                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VxG-bu-h4z">
                         <rect key="frame" x="0.0" y="0.0" width="104" height="104"/>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="play.png" translatesAutoresizingMaskIntoConstraints="NO" id="MHM-0u-087">
+                        <rect key="frame" x="40" y="39" width="25" height="25"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <connections>
+                <outlet property="imgPlay" destination="MHM-0u-087" id="QwZ-Cn-qvg"/>
                 <outlet property="imgSearch" destination="VxG-bu-h4z" id="m9f-Vb-ufP"/>
             </connections>
             <point key="canvasLocation" x="30" y="200"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="play.png" width="50" height="58"/>
+    </resources>
 </document>

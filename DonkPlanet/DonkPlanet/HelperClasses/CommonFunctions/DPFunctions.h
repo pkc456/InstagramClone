@@ -51,4 +51,6 @@ typedef NS_ENUM(NSUInteger, FollowType) {
 - (UIView *)showLoadingViewWithText:(NSString *)strMessage inView:(UIView *)view;
 - (void)hideLoadingView:(UIView *)loadingView;
 
+- (NSString *)setTimeElapsedForDate:(NSDate *)startDate;
+
 @end

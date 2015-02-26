@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "LoginViewController.h"
+#import "PostViewController.h"
 #import "HomeCell.h"
 
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate, HomeCellDelegate> {
@@ -172,7 +173,19 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (segmentPosts.selectedSegmentIndex) {
+        HomeCell *cell = (HomeCell *)[tableView cellForRowAtIndexPath:indexPath];
+        [cell removeAVPlayer];
+    }
+    
+    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:_DP_StoryboardName
+                                                             bundle:nil];
+    PostViewController *objPostView = (PostViewController *)[mainStoryBoard instantiateViewControllerWithIdentifier:_DP_PostViewStrbdID];
+    [objPostView setObjPost:(PFObject *)[arrPosts objectAtIndex:indexPath.row]];
+    [self.navigationController pushViewController:objPostView animated:YES];
 }
 
 @end

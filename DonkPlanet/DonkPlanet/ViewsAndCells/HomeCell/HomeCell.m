@@ -53,67 +53,28 @@
     // Configure the view for the selected state
 }
 
+- (void)removeAVPlayer {
+    
+    [avPlayer pause];
+    @try {
+        [avPlayer removeObserver:self forKeyPath:@"rate" context:nil];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"No observer for player");
+    }
+    @finally {
+        avPlayer = nil;
+        for (AVPlayerLayer *avLayer in viewVideo.layer.sublayers) {
+            [avLayer setPlayer:nil];
+            [avLayer removeFromSuperlayer];
+        }
+    }
+}
+
 - (void)prepareForReuse {
     
     [imgViewPost setImage:[UIImage imageNamed:@"placeholder"]];
-    [avPlayer pause];
-    
-    [avPlayer removeObserver:self forKeyPath:@"rate" context:nil];
-    
-    avPlayer = nil;
-    
-    for (AVPlayerLayer *avLayer in viewVideo.layer.sublayers) {
-        [avLayer setPlayer:nil];
-        [avLayer removeFromSuperlayer];
-    }
-}
-
-- (void)setTimeElapsedForDate:(NSDate *)startDate {
-    
-    NSInteger timeToDisplay = 0;
-    
-    NSCalendar *gregorian = [[NSCalendar alloc]
-                             initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    
-    NSUInteger unitFlags = NSCalendarUnitSecond | NSCalendarUnitMinute | NSCalendarUnitHour | NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear;
-    
-    NSDateComponents *components = [gregorian components:unitFlags
-                                                fromDate:startDate
-                                                  toDate:[NSDate date] options:0];
-    timeToDisplay = [components second];
-    
-    NSString *strSpecifier = @"s";
-    
-    if ([components minute]) {
-        timeToDisplay = [components minute];
-        strSpecifier = @"m";
-    }
-    if ([components hour]) {
-        timeToDisplay = [components hour];
-        strSpecifier = @"h";
-    }
-    if ([components day]) {
-        timeToDisplay = [components day];
-        strSpecifier = @"d";
-    }
-    if ([components month]) {
-        timeToDisplay = [components month];
-        strSpecifier = @"m";
-    }
-    if ([components year]) {
-        timeToDisplay = [components year];
-        strSpecifier = @"y";
-    }
-
-    [lblTime setText:[NSString stringWithFormat:@"%d%@", timeToDisplay, strSpecifier]];
-}
-
-- (void)hideMovieControls:(BOOL)toHide {
-    
-    [imgViewPost setHidden:!toHide];
-    [imgViewPlayPause setHidden:toHide];
-    [viewVideo setHidden:toHide];
-    [btnPlayPause setHidden:toHide];
+    [self removeAVPlayer];
 }
 
 #pragma mark - Filling Cell with post object
@@ -129,7 +90,7 @@
 //                       @"Shawn Simon"];
 //    [query whereKey:@"playerName" containedIn:names];
     
-    [self setTimeElapsedForDate:objPost.createdAt];
+    [lblTime setText:[_DPFunctions setTimeElapsedForDate:objPost.createdAt]];
     
     PFUser *user = [objPost objectForKey:poUserPointer];
     
@@ -161,8 +122,6 @@
             avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
             layer.frame = CGRectMake(0, 0, viewVideo.frame.size.width, viewVideo.frame.size.height);
             [viewVideo.layer addSublayer: layer];
-
-            [avPlayer addObserver:self forKeyPath:@"rate" options:0 context:nil];
         }
         else {
             if (rowNumber != lastIndex) {
@@ -194,6 +153,14 @@
 
 #pragma mark - Hide Play/Pause Button
 
+- (void)hideMovieControls:(BOOL)toHide {
+    
+    [imgViewPost setHidden:!toHide];
+    [imgViewPlayPause setHidden:toHide];
+    [viewVideo setHidden:toHide];
+    [btnPlayPause setHidden:toHide];
+}
+
 - (void)hidePlayPauseButton {
     NSDate *dateNow = [NSDate date];
     NSTimeInterval timeInterval = [dateNow timeIntervalSinceDate:dateToHide];
@@ -207,6 +174,7 @@
 
 - (IBAction)buttonPlayPauseTouched:(UIButton *)sender {
     
+    [avPlayer addObserver:self forKeyPath:@"rate" options:0 context:nil];
     dateToHide = [NSDate date];
     NSString *strImageName = @"play";
     if ([avPlayer rate] >= 0.5) {

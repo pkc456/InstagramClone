@@ -81,7 +81,8 @@ static NSString *REUSEPostCell = @"REUSECollectionSearch";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if ([self.delegate respondsToSelector:@selector(openPostViewForObject:)])
+        [self.delegate openPostViewForObject:(PFObject *)[arrPosts objectAtIndex:indexPath.row]];
 }
 
 @end

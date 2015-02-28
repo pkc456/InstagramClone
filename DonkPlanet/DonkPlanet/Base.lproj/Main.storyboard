@@ -354,7 +354,7 @@
         <!--Profile View Controller-->
         <scene sceneID="cDT-BH-7Vu">
             <objects>
-                <viewController id="vyR-ws-XnO" customClass="ProfileViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewStoryboardID" id="vyR-ws-XnO" customClass="ProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BMl-CS-eg6"/>
                         <viewControllerLayoutGuide type="bottom" id="Xiv-zV-XYL"/>
@@ -471,6 +471,9 @@
                                             <constraint firstItem="rvT-Po-Sxu" firstAttribute="top" secondItem="6zB-b9-2C6" secondAttribute="top" id="t8D-vK-50Y"/>
                                         </constraints>
                                     </view>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wFe-Bl-Hc9">
+                                        <rect key="frame" x="35" y="35" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -479,11 +482,13 @@
                                     <constraint firstAttribute="trailing" secondItem="sUZ-UK-khT" secondAttribute="trailing" constant="10" id="FKu-Jt-Vdb"/>
                                     <constraint firstItem="SS1-EU-End" firstAttribute="top" secondItem="sUZ-UK-khT" secondAttribute="bottom" constant="-1" id="GQO-Jv-s2y"/>
                                     <constraint firstItem="sUZ-UK-khT" firstAttribute="leading" secondItem="FmW-Zz-zkh" secondAttribute="trailing" constant="15" id="HKP-Np-LZ2"/>
+                                    <constraint firstItem="wFe-Bl-Hc9" firstAttribute="centerY" secondItem="FmW-Zz-zkh" secondAttribute="centerY" id="M5y-fX-2XW"/>
                                     <constraint firstItem="6zB-b9-2C6" firstAttribute="leading" secondItem="DKy-K9-PpZ" secondAttribute="leading" id="OCb-jP-Sbl"/>
                                     <constraint firstItem="FmW-Zz-zkh" firstAttribute="top" secondItem="DKy-K9-PpZ" secondAttribute="top" constant="10" id="RyS-3B-fOi"/>
                                     <constraint firstAttribute="height" constant="130" id="X7I-Y1-zc2"/>
                                     <constraint firstItem="SS1-EU-End" firstAttribute="leading" secondItem="FmW-Zz-zkh" secondAttribute="trailing" constant="15" id="YXf-kc-6zx"/>
                                     <constraint firstItem="FmW-Zz-zkh" firstAttribute="leading" secondItem="DKy-K9-PpZ" secondAttribute="leading" constant="10" id="eqZ-W4-okd"/>
+                                    <constraint firstItem="wFe-Bl-Hc9" firstAttribute="centerX" secondItem="FmW-Zz-zkh" secondAttribute="centerX" id="sN5-6S-230"/>
                                     <constraint firstAttribute="trailing" secondItem="6zB-b9-2C6" secondAttribute="trailing" id="yxY-5O-19J"/>
                                     <constraint firstAttribute="trailing" secondItem="SS1-EU-End" secondAttribute="trailing" constant="10" id="zvQ-ku-Xkc"/>
                                     <constraint firstItem="sUZ-UK-khT" firstAttribute="top" secondItem="DKy-K9-PpZ" secondAttribute="top" constant="14" id="zzE-1s-fr1"/>
@@ -506,11 +511,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Yfq-za-hjr">
-                        <barButtonItem key="leftBarButtonItem" image="deviceContacts.png" id="KMi-ef-2De">
-                            <connections>
-                                <action selector="barButtonContactsTapped:" destination="vyR-ws-XnO" id="tQV-AJ-A1Z"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="logout.png" id="g9n-Mf-8mU">
                             <connections>
                                 <action selector="btnLogoutAction:" destination="vyR-ws-XnO" id="q77-hP-uJU"/>
@@ -518,6 +518,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityLoader" destination="wFe-Bl-Hc9" id="Stj-9A-H76"/>
                         <outlet property="btnFollowers" destination="jAQ-yu-2HK" id="QRd-d7-TNz"/>
                         <outlet property="btnFollowing" destination="tgL-09-5IV" id="5Uh-Zw-OtR"/>
                         <outlet property="btnPosts" destination="rvT-Po-Sxu" id="KTf-bL-Bt3"/>
@@ -1157,7 +1158,6 @@
         <image name="captionback.png" width="37" height="62"/>
         <image name="cross_icon.png" width="25" height="25"/>
         <image name="day_clock_icon.png" width="9" height="9"/>
-        <image name="deviceContacts.png" width="25" height="25"/>
         <image name="flashOff.png" width="15" height="22"/>
         <image name="heartSel.png" width="64" height="49"/>
         <image name="heartUnsel.png" width="64" height="49"/>

@@ -71,17 +71,18 @@
 
 - (void)setUserDefaults {
     
-//    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-//    
-//    if ([userDefs objectForKey:_DP_UserLoggedIn]) {
-//        [userDefs setBool:NO forKey:_DP_UserLoggedIn];
-//    }
+//    if (![_DPUserDefs objectForKey:_DP_DateContactsUpdated])
+//        [_DPUserDefs setObject:[NSDate date] forKey:_DP_DateContactsUpdated];
 }
 
 - (void)setAppDefaults {
     
+    UIFont *fontNavigationTitle = [UIFont fontWithName:_DP_FontHelveticaNeueMedium size:18];
+    
     NSDictionary *dictTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                        [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+                                        [UIColor whiteColor], NSForegroundColorAttributeName,
+                                        fontNavigationTitle, NSFontAttributeName, nil];
+    
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:57/255.0f green:183/255.0f blue:208/255.0f alpha:1.0f]];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:dictTextAttributes];

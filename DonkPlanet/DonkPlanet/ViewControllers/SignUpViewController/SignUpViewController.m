@@ -55,8 +55,21 @@
 #pragma mark - Setup View
 
 - (void)setupSignUpView {
+    
     [self setTitle:@"Sign Up"];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    [txtFieldEmail setLeftViewMode:UITextFieldViewModeAlways];
+    [txtFieldEmail setLeftView:[_DPFunctions leftViewForTextFieldWithImage:@"email"]];
+  
+    [txtFieldUsername setLeftViewMode:UITextFieldViewModeAlways];
+    [txtFieldUsername setLeftView:[_DPFunctions leftViewForTextFieldWithImage:@"user_grey"]];
+    
+    [txtFieldPassword setLeftViewMode:UITextFieldViewModeAlways];
+    [txtFieldPassword setLeftView:[_DPFunctions leftViewForTextFieldWithImage:@"password_grey"]];
+    
+    [txtFieldPhone setLeftViewMode:UITextFieldViewModeAlways];
+    [txtFieldPhone setLeftView:[_DPFunctions leftViewForTextFieldWithImage:@"phone"]];
     
     [btnSignUp setBackgroundColor:[_DPFunctions colorWithR:36 g:164 b:193 alpha:1.0f]];
     [btnSignUp.layer setCornerRadius:3.0f];

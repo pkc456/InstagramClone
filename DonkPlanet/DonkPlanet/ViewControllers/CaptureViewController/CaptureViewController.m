@@ -74,7 +74,7 @@
         
         NSString *userID = currentUser.objectId;
         NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970];
-        NSString *imageFileName = [NSString stringWithFormat:@"%@-%f", userID, timeInterval];
+        NSString *imageFileName = [NSString stringWithFormat:@"%@-%f.png", userID, timeInterval];
         
         NSData *imageData = UIImagePNGRepresentation(imgCaptured.image);
         PFFile *imageFile = [PFFile fileWithName:imageFileName data:imageData];

@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CollectionPostDelegate <NSObject>
+
+- (void)openPostViewForObject:(PFObject *)objPost;
+
+@end
+
 @interface CollectionPosts : UIView
 
 - (void)setArrayToShow:(NSMutableArray *)arrPosts;
 
 @property (assign, nonatomic) BOOL postsFetched;
+@property (assign, nonatomic) id<CollectionPostDelegate> delegate;
 
 @end

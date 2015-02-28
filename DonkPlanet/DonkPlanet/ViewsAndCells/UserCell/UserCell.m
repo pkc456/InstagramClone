@@ -46,8 +46,8 @@
     PFUser *currentUser = [PFUser currentUser];
     
     PFQuery *statusQuery = [PFQuery queryWithClassName:@"Follow"];
-    [statusQuery whereKey:@"follower" equalTo:currentUser];
-    [statusQuery whereKey:@"following" equalTo:user];
+    [statusQuery whereKey:@"followUserPointer" equalTo:currentUser];
+    [statusQuery whereKey:@"followingUserPointer" equalTo:user];
     [statusQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             NSInteger action = TypeFollow;
@@ -94,20 +94,30 @@
 }
 
 - (void)fillUserCellForIndex:(PFUser *)user {
-
-    thisCellUser = user;
-    [lblUsername setText:user.username];
-    [self checkUserStatusWithUser:user];
+    
+    [user fetchIfNeeded];
+    [user fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!error) {
+            thisCellUser = user;
+            [lblUsername setText:user.username];
+            [self checkUserStatusWithUser:user];
+        }
+    }];
 }
 
 - (void)fillUserCellForFollower:(BOOL)follower
                   andUserObject:(PFObject *)thisObject {
     
-    NSString *otherUser = follower ? @"follower" : @"following";
-    
+    NSString *otherUser = follower ? @"followUserPointer" : @"followingUserPointer";
+
     thisCellUser = [thisObject objectForKey:otherUser];
-    [lblUsername setText:thisCellUser.username];
-    [self checkUserStatusWithUser:thisCellUser];
+    [thisCellUser fetchIfNeeded];
+    [thisCellUser fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!error) {
+            [lblUsername setText:thisCellUser.username];
+            [self checkUserStatusWithUser:thisCellUser];
+        }
+    }];
 }
 
 #pragma mark - IBAction Follow/ing
@@ -124,8 +134,8 @@
     PFUser *currentUser = [PFUser currentUser];
     
     PFObject *userFollow = [PFObject objectWithClassName:@"Follow"];
-    [userFollow setObject:currentUser forKey:@"follower"];
-    [userFollow setObject:thisCellUser forKey:@"following"];
+    [userFollow setObject:currentUser forKey:@"followUserPointer"];
+    [userFollow setObject:thisCellUser forKey:@"followingUserPointer"];
     if ([sender tag] == TypeFollow) {
         [userFollow saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
@@ -143,8 +153,8 @@
 - (void)deleteRelationBetweenUsers {
     
     PFQuery *query = [PFQuery queryWithClassName:@"Follow"];
-    [query whereKey:@"follower" equalTo:[PFUser currentUser]];
-    [query whereKey:@"following" equalTo:thisCellUser];
+    [query whereKey:@"followUserPointer" equalTo:[PFUser currentUser]];
+    [query whereKey:@"followingUserPointer" equalTo:thisCellUser];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             for (PFObject *followUser in objects) {

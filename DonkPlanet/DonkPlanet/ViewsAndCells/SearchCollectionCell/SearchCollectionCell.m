@@ -30,6 +30,7 @@
 }
 
 - (void)prepareForReuse {
+    [imgPlay setHidden:NO];
     [imgSearch setImage:[UIImage imageNamed:@"placeholder"]];
 }
 

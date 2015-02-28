@@ -107,6 +107,12 @@ static NSString *REUSEUserCell = @"REUSEUserCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if ([self.delegate respondsToSelector:@selector(showProfileForUser:)]) {
+        NSString *otherUser = self.followers ? @"followUserPointer" : @"followingUserPointer";
+        PFObject *objectAtIndex = [arrToShow objectAtIndex:indexPath.row];
+        [self.delegate showProfileForUser:(PFUser *)[objectAtIndex objectForKey:otherUser]];
+    }
+    
 }
 
 @end

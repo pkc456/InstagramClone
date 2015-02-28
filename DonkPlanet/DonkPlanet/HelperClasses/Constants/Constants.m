@@ -12,14 +12,16 @@
 
 #pragma mark - Controller Storyboard IDs
 
-NSString *const _DP_StoryboardName      = @"Main";
-NSString *const _DP_NavControllerLogin  = @"LoginNavigationController";
-NSString *const _DP_CaptureViewStrbdID  = @"CaptureViewStoryboardID";
-NSString *const _DP_PostViewStrbdID     = @"PostViewStoryboardID";
+NSString *const _DP_StoryboardName          = @"Main";
+NSString *const _DP_NavControllerLogin      = @"LoginNavigationController";
+NSString *const _DP_CaptureViewStrbdID      = @"CaptureViewStoryboardID";
+NSString *const _DP_PostViewStrbdID         = @"PostViewStoryboardID";
+NSString *const _DP_ProfileViewStrbdID      = @"ProfileViewStoryboardID";
 
 #pragma mark - Other App Constants
 
-NSString *const _DP_FontHelveticaNeueLight = @"HelveticaNeue-Light";
-NSString *const _DP_FontHelveticaNeueBold  = @"HelveticaNeue-Bold";
+NSString *const _DP_FontHelveticaNeueLight  = @"HelveticaNeue-Light";
+NSString *const _DP_FontHelveticaNeueBold   = @"HelveticaNeue-Bold";
+NSString *const _DP_FontHelveticaNeueMedium = @"HelveticaNeue-Medium";
 
 @end

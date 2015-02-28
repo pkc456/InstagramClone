@@ -45,6 +45,9 @@
     
     [imgViewPost.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [imgViewPost.layer setBorderWidth:1.0f];
+    
+    [viewVideo.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [viewVideo.layer setBorderWidth:1.0f];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

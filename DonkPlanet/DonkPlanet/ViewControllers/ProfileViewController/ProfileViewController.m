@@ -9,14 +9,16 @@
 #import <AddressBook/AddressBook.h>
 
 #import "ProfileViewController.h"
+#import "PostViewController.h"
 #import "InfoCell.h"
 
 #import "CollectionPosts.h"
 #import "UsersView.h"
 
-@interface ProfileViewController () <UIAlertViewDelegate, UsersViewDelegate> {
+@interface ProfileViewController () <UIAlertViewDelegate, UsersViewDelegate, CollectionPostDelegate> {
     
     __weak IBOutlet UIImageView *imgProfile;
+    __weak IBOutlet UIActivityIndicatorView *activityLoader;
     __weak IBOutlet UILabel *lblName;
     __weak IBOutlet UILabel *lblEmail;
     __weak IBOutlet UIButton *btnPosts;
@@ -44,6 +46,8 @@
     
     BOOL errorFetchingFollowers;
     BOOL errorFetchingFollowing;
+    
+    BOOL boolContactsUpdated;
 }
 
 @end
@@ -54,7 +58,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.navigationItem setTitle:@"Profile"];
-    [self setupProfileView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,6 +67,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self setupProfileView];
     [self fetchFollowers];
     [self fetchFollowing];
 }
@@ -87,6 +91,13 @@
 
 - (void)setupProfileView {
     
+    if (!self.userProfile) {
+        self.userProfile = [PFUser currentUser];
+        
+        UIBarButtonItem *barButtonLeftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"deviceContacts"] style:UIBarButtonItemStyleDone target:self action:@selector(barButtonContactsTapped:)];
+        [self.navigationItem setLeftBarButtonItem:barButtonLeftItem];
+    }
+    
     errorFetchingFollowers = NO;
     errorFetchingFollowing = NO;
     
@@ -104,12 +115,12 @@
         [button.layer setBorderWidth:0.25];
     }
     
-    PFUser *currentUser = [PFUser currentUser];
-    [lblName setText:currentUser[@"username"]];
-    [lblEmail setText:currentUser[@"email"]];
-    PFFile *fileImage = currentUser[@"profileImage"];
+    [lblName setText:self.userProfile[@"username"]];
+    [lblEmail setText:self.userProfile[@"email"]];
+    PFFile *fileImage = self.userProfile[@"profileImage"];
     [fileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
+            [activityLoader stopAnimating];
             [imgProfile setImage:[UIImage imageWithData:data]];
         }
     }];
@@ -163,14 +174,31 @@
     attrstr = nil;
 }
 
+#pragma mark - Updating Contacts for User
+
+- (void)updateContactsForUser {
+    
+    arrContacts = [[NSArray alloc] initWithArray:[self getAllContacts]];
+    
+    PFUser *currentUser = [PFUser currentUser];
+    [currentUser setObject:arrContacts forKey:@"contacts"];
+    [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            [self fetchKnownUsers];
+        }
+        else {
+            
+        }
+//        boolContactsUpdated = !error;
+    }];
+}
+
 #pragma mark - Fetch Followers/Following/Known Users
 
 - (void)fetchFollowers {
     
-    PFUser *currentUser = [PFUser currentUser];
-    
     PFQuery *followerQuery = [PFQuery queryWithClassName:@"Follow"];
-    [followerQuery whereKey:@"following" equalTo:currentUser];
+    [followerQuery whereKey:@"followingUserPointer" equalTo:self.userProfile];
     [followerQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         boolFollowersFetched = YES;
         if (!error) {
@@ -190,15 +218,13 @@
 
 - (void)fetchFollowing {
     
-    PFUser *currentUser = [PFUser currentUser];
-    
     PFQuery *followingQuery = [PFQuery queryWithClassName:@"Follow"];
-    [followingQuery whereKey:@"follower" equalTo:currentUser];
+    [followingQuery whereKey:@"followUserPointer" equalTo:self.userProfile];
     [followingQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         boolFollowingFetched = YES;
         if (!error) {
             arrFollowing = [[NSMutableArray alloc] initWithArray:objects];
-            [(UsersView *)viewCurrent setArrayToShow:arrFollowing];
+            [objUsersView setArrayToShow:arrFollowing];
             [self setAttributedText:@"following"
                          withNumber:objects.count
                            onButton:btnFollowing];
@@ -214,10 +240,8 @@
 
 - (void)fetchKnownUsers {
     
-    PFUser *currentUser = [PFUser currentUser];
-    
     PFQuery *knownQuery = [PFQuery queryWithClassName:@"_User"];
-    [knownQuery whereKey:@"phone" containedIn:currentUser[@"contacts"]];
+    [knownQuery whereKey:@"phone" containedIn:self.userProfile[@"contacts"]];
     [knownQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         BOOL errorOccured = YES;
         if (!error) {
@@ -227,8 +251,6 @@
                 arrKnownUsers = nil;
             }
             arrKnownUsers = [[NSMutableArray alloc] initWithArray:objects];
-            
-            NSLog(@"objects : %@", objects);
         }
         
         [objViewContacts setFetched:YES];
@@ -236,14 +258,6 @@
         [objViewContacts setFollowers:NO];
         [objViewContacts setArrayToShow:arrKnownUsers];
     }];
-    
-//    PFQuery *followQuery = [PFQuery queryWithClassName:@"Follow"];
-//    [followQuery whereKey:@"follower" containedIn:currentUser[@"contacts"]];
-//    [followQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        if (!error) {
-//            NSLog(@"objects : %@", objects);
-//        }
-//    }];
 }
 
 #pragma mark - Fetch User Posts
@@ -251,7 +265,7 @@
 - (void)fetchUserPosts {
     
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query whereKey:@"userPointer" equalTo:[PFUser currentUser]];
+    [query whereKey:@"userPointer" equalTo:self.userProfile];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [viewPostsCollection setPostsFetched:YES];
@@ -410,6 +424,26 @@
     }
 }
 
+#pragma mark - Collection Post Delegate
+
+- (void)openPostViewForObject:(PFObject *)objPost {
+    
+    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:_DP_StoryboardName
+                                                             bundle:nil];
+    PostViewController *objPostView = (PostViewController *)[mainStoryBoard instantiateViewControllerWithIdentifier:_DP_PostViewStrbdID];
+    [objPostView setObjPost:objPost];
+    [self.navigationController pushViewController:objPostView animated:YES];
+}
+
+- (void)showProfileForUser:(PFUser *)userProfile {
+    
+    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:_DP_StoryboardName
+                                                             bundle:nil];
+    ProfileViewController *objProfileView = (ProfileViewController *)[mainStoryBoard instantiateViewControllerWithIdentifier:_DP_ProfileViewStrbdID];
+    [objProfileView setUserProfile:userProfile];
+    [self.navigationController pushViewController:objProfileView animated:YES];
+}
+
 #pragma mark - IBActions
 
 - (IBAction)buttonShowPostsAction:(id)sender {
@@ -418,12 +452,12 @@
     if (!viewPostsCollection) {
         UINib *nibCollectionPosts = [UINib nibWithNibName:@"CollectionPosts" bundle:nil];
         CollectionPosts *objCollectionPosts = [[nibCollectionPosts instantiateWithOwner:self options:nil] objectAtIndex:0];
-        
+        [objCollectionPosts setFrame:CGRectMake(0, 0, viewExtension.frame.size.width, viewExtension.frame.size.height)];
         viewPostsCollection = objCollectionPosts;
         [viewPostsCollection setPostsFetched:NO];
         [viewExtension addSubview:viewPostsCollection];
     }
-    
+    [viewPostsCollection setDelegate:self];
     if (viewCurrent != viewPostsCollection) {
         [viewCurrent setHidden:YES];
         viewCurrent = viewPostsCollection;
@@ -474,7 +508,9 @@
 }
 
 - (IBAction)barButtonContactsTapped:(id)sender {
-
+    
+    [self updateContactsForUser];
+    
     [[self.navigationItem rightBarButtonItem] setEnabled:NO];
     [[self.navigationItem leftBarButtonItem] setEnabled:NO];
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
@@ -493,7 +529,7 @@
     }
 
     [viewBack addSubview:objViewContacts];
-    [self fetchKnownUsers];
+//    [self fetchKnownUsers];
     
     UIButton *btnClose = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnClose setFrame:CGRectMake(screenSize.width - 26, 0, 24, 24)];

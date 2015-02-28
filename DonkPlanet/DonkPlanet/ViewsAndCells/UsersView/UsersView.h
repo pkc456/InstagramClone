@@ -11,6 +11,7 @@
 @protocol UsersViewDelegate <NSObject>
 
 - (void)updateFollowingUsers;
+- (void)showProfileForUser:(PFUser *)userProfile;
 
 @end
 

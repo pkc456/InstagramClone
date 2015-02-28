@@ -10,4 +10,6 @@
 
 @interface ProfileViewController : UIViewController
 
+@property (strong, nonatomic) PFUser *userProfile;
+
 @end

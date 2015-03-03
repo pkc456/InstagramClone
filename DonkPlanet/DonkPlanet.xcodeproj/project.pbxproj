@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41D1B8091AA1FDA900AB9092 /* splash 960.png in Resources */ = {isa = PBXBuildFile; fileRef = 41D1B8081AA1FDA900AB9092 /* splash 960.png */; };
+		41D1B80B1AA1FDFA00AB9092 /* splash 1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 41D1B80A1AA1FDFA00AB9092 /* splash 1136.png */; };
+		41D1B80D1AA1FE2B00AB9092 /* splash 2208.png in Resources */ = {isa = PBXBuildFile; fileRef = 41D1B80C1AA1FE2B00AB9092 /* splash 2208.png */; };
+		41D1B80F1AA1FE6600AB9092 /* splash 1334.png in Resources */ = {isa = PBXBuildFile; fileRef = 41D1B80E1AA1FE6600AB9092 /* splash 1334.png */; };
+		41D1B8111AA1FE9000AB9092 /* splash 480.png in Resources */ = {isa = PBXBuildFile; fileRef = 41D1B8101AA1FE9000AB9092 /* splash 480.png */; };
 		41FB7B621AA1E005007F2209 /* icon_100.png in Resources */ = {isa = PBXBuildFile; fileRef = 41FB7B581AA1E005007F2209 /* icon_100.png */; };
 		41FB7B631AA1E005007F2209 /* icon_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 41FB7B591AA1E005007F2209 /* icon_114.png */; };
 		41FB7B641AA1E005007F2209 /* icon_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 41FB7B5A1AA1E005007F2209 /* icon_120.png */; };
@@ -182,6 +187,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		41D1B8081AA1FDA900AB9092 /* splash 960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash 960.png"; sourceTree = "<group>"; };
+		41D1B80A1AA1FDFA00AB9092 /* splash 1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash 1136.png"; sourceTree = "<group>"; };
+		41D1B80C1AA1FE2B00AB9092 /* splash 2208.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash 2208.png"; sourceTree = "<group>"; };
+		41D1B80E1AA1FE6600AB9092 /* splash 1334.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash 1334.png"; sourceTree = "<group>"; };
+		41D1B8101AA1FE9000AB9092 /* splash 480.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash 480.png"; sourceTree = "<group>"; };
 		41FB7B581AA1E005007F2209 /* icon_100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_100.png; sourceTree = "<group>"; };
 		41FB7B591AA1E005007F2209 /* icon_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_114.png; sourceTree = "<group>"; };
 		41FB7B5A1AA1E005007F2209 /* icon_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_120.png; sourceTree = "<group>"; };
@@ -409,6 +419,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		41D1B8071AA1FD4E00AB9092 /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				41D1B8101AA1FE9000AB9092 /* splash 480.png */,
+				41D1B80E1AA1FE6600AB9092 /* splash 1334.png */,
+				41D1B80C1AA1FE2B00AB9092 /* splash 2208.png */,
+				41D1B8081AA1FDA900AB9092 /* splash 960.png */,
+				41D1B80A1AA1FDFA00AB9092 /* splash 1136.png */,
+			);
+			path = SplashScreen;
+			sourceTree = "<group>";
+		};
 		41FB7B571AA1E005007F2209 /* icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -757,6 +779,7 @@
 		845D28441A70A7D70025FC21 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				41D1B8071AA1FD4E00AB9092 /* SplashScreen */,
 				41FB7B571AA1E005007F2209 /* icons */,
 				84C9C8D11A8537F300814AEB /* Post */,
 				844759DD1A824F2500650C13 /* Camera */,
@@ -1027,6 +1050,7 @@
 				84D7378B1A7759E30097B80E /* back_icon@2x.png in Resources */,
 				840A0A341A95C09D007AE009 /* logout@2x.png in Resources */,
 				84FE34E61A8CD7C8003F7EF0 /* 1minute.mov in Resources */,
+				41D1B80D1AA1FE2B00AB9092 /* splash 2208.png in Resources */,
 				841409A11A9F288F00105103 /* HomeCell.xib in Resources */,
 				844759BE1A822BE900650C13 /* homeUnsel.png in Resources */,
 				845D28821A70A7D70025FC21 /* blank_img.png in Resources */,
@@ -1053,6 +1077,7 @@
 				845D28781A70A7D70025FC21 /* friends@2x.png in Resources */,
 				844759C61A822BE900650C13 /* userUnsel.png in Resources */,
 				845D28701A70A7D70025FC21 /* logo_login.png in Resources */,
+				41D1B80B1AA1FDFA00AB9092 /* splash 1136.png in Resources */,
 				844759B61A822BE900650C13 /* cameraUnsel.png in Resources */,
 				844821E51A76822000CBF68A /* txtFieldBack@2x.png in Resources */,
 				845D28711A70A7D70025FC21 /* logo_login@2x.png in Resources */,
@@ -1077,6 +1102,7 @@
 				844759BF1A822BE900650C13 /* homeUnsel@2x.png in Resources */,
 				844759FF1A82602300650C13 /* cameraChange@2x.png in Resources */,
 				84475A041A82602300650C13 /* photo_icon.png in Resources */,
+				41D1B80F1AA1FE6600AB9092 /* splash 1334.png in Resources */,
 				845D28851A70A7D70025FC21 /* email@2x.png in Resources */,
 				844759E41A824F2500650C13 /* blue_bg_cam.png in Resources */,
 				844759BA1A822BE900650C13 /* heartUnsel.png in Resources */,
@@ -1102,6 +1128,7 @@
 				41FB7B6A1AA1E005007F2209 /* icon_72.png in Resources */,
 				844759C01A822BE900650C13 /* searchSel.png in Resources */,
 				41FB7B641AA1E005007F2209 /* icon_120.png in Resources */,
+				41D1B8111AA1FE9000AB9092 /* splash 480.png in Resources */,
 				844759C41A822BE900650C13 /* userSel.png in Resources */,
 				844759D01A8236F600650C13 /* day_clock_icon@2x.png in Resources */,
 				841409A71A9F288F00105103 /* UserCell.xib in Resources */,
@@ -1116,6 +1143,7 @@
 				845D287A1A70A7D70025FC21 /* hobby@2x.png in Resources */,
 				845D288D1A70A7D70025FC21 /* user_grey@2x.png in Resources */,
 				84C9C8D51A8537F300814AEB /* captionback@2x.png in Resources */,
+				41D1B8091AA1FDA900AB9092 /* splash 960.png in Resources */,
 				844759BD1A822BE900650C13 /* homeSel@2x.png in Resources */,
 				845D28731A70A7D70025FC21 /* username.png in Resources */,
 				84475A051A82602300650C13 /* photo_icon@2x.png in Resources */,
@@ -1308,6 +1336,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Harry Similien (XB2A857555)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1327,6 +1356,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Harry Similien (XB2A857555)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

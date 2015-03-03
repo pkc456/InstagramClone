@@ -1289,7 +1289,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Donk Planet";
-				PROVISIONING_PROFILE = "03503366-c8cf-438d-9894-61a771ba7e8e";
+				PROVISIONING_PROFILE = "ebe93a87-69a8-4268-a322-2a4d7519cda3";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1326,7 +1326,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "Donk Planet";
-				PROVISIONING_PROFILE = "03503366-c8cf-438d-9894-61a771ba7e8e";
+				PROVISIONING_PROFILE = "ebe93a87-69a8-4268-a322-2a4d7519cda3";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1348,7 +1348,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "03503366-c8cf-438d-9894-61a771ba7e8e";
+				PROVISIONING_PROFILE = "ebe93a87-69a8-4268-a322-2a4d7519cda3";
 			};
 			name = Debug;
 		};
@@ -1368,7 +1368,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "03503366-c8cf-438d-9894-61a771ba7e8e";
+				PROVISIONING_PROFILE = "ebe93a87-69a8-4268-a322-2a4d7519cda3";
 			};
 			name = Release;
 		};

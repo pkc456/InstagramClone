@@ -147,7 +147,19 @@
         strSpecifier = @"y";
     }
     
-    return [NSString stringWithFormat:@"%d%@", timeToDisplay, strSpecifier];
+    NSString *strTimeElapsed = [NSString stringWithFormat:@"%d%@", timeToDisplay, strSpecifier];
+    return strTimeElapsed;
+}
+
+#pragma mark - Resizing image
+
+- (UIImage *)resizeImageWithImage:(UIImage *)image toSize:(CGSize)newSize {
+
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 @end

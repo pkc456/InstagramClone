@@ -24,6 +24,8 @@
     BOOL photoUploaded;
     
     NSArray *arrContacts;
+    
+    CGRect frameDefault;
 }
 
 @end
@@ -56,6 +58,8 @@
 
 - (void)setupSignUpView {
     
+    frameDefault = self.view.frame;
+    
     [self setTitle:@"Sign Up"];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
@@ -78,9 +82,6 @@
     [imgViewProfile.layer setBorderWidth:3.0f];
     
     [imgViewProfile.layer setCornerRadius:imgViewProfile.frame.size.width/2.0f];
-    
-    arrContacts = [[NSArray alloc] initWithArray:[self getAllContacts]];
-    NSLog(@"Arr Contacts : %@", arrContacts);
 }
 
 - (void)resetTextFields {
@@ -90,7 +91,7 @@
     [txtFieldPhone setText:nil];
 }
 
-#pragma mark - Get All Contacts
+/*#pragma mark - Get All Contacts
 
 - (NSArray *)getAllContacts {
     
@@ -200,11 +201,51 @@
         return NO;
     }
 }
+*/
+
+#pragma mark - Resign Responders
+
+- (void)resignRespondersForTextFields {
+    
+    [UIView animateWithDuration:0.24
+                     animations:^ {
+                         [self.view setFrame:frameDefault];
+                     }
+                     completion:nil];
+    
+    [txtFieldEmail resignFirstResponder];
+    [txtFieldUsername resignFirstResponder];
+    [txtFieldPassword resignFirstResponder];
+    [txtFieldPhone resignFirstResponder];
+}
 
 #pragma mark - Text Field Delegates
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
+    CGRect newFrame = self.view.frame;
+    newFrame.origin.y = -textField.tag * textField.frame.size.height;
+    
+    [UIView animateWithDuration:0.24
+                     animations:^ {
+                         [self.view setFrame:newFrame];
+                     }
+                     completion:^(BOOL finished) {
+                         
+                     }];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    if (textField == txtFieldEmail)
+        [txtFieldUsername becomeFirstResponder];
+    else if (textField == txtFieldUsername)
+        [txtFieldPassword becomeFirstResponder];
+    else if (textField == txtFieldPassword)
+        [txtFieldPhone becomeFirstResponder];
+    else
+        [self resignRespondersForTextFields];
+    return YES;
 }
 
 #pragma mark - Check User Details
@@ -412,6 +453,15 @@
     imgViewProfile.image = chosenImage;
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark - Touch Methods
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    UIView *viewTouched = [[touches anyObject] view];
+    if (![viewTouched isKindOfClass:[UITextField class]])
+        [self resignRespondersForTextFields];
 }
 
 @end

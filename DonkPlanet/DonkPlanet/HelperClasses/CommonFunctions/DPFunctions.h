@@ -53,4 +53,8 @@ typedef NS_ENUM(NSUInteger, FollowType) {
 
 - (NSString *)setTimeElapsedForDate:(NSDate *)startDate;
 
+#pragma mark - Resizing image
+
+- (UIImage *)resizeImageWithImage:(UIImage *)image toSize:(CGSize)newSize;
+
 @end

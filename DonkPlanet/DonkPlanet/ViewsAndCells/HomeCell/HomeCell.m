@@ -58,20 +58,26 @@
 
 - (void)removeAVPlayer {
     
-    [avPlayer pause];
-    @try {
+    if ([avPlayer rate] > 0.5) {
+        [avPlayer pause];
         [avPlayer removeObserver:self forKeyPath:@"rate" context:nil];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"No observer for player");
-    }
-    @finally {
+        
         avPlayer = nil;
         for (AVPlayerLayer *avLayer in viewVideo.layer.sublayers) {
             [avLayer setPlayer:nil];
             [avLayer removeFromSuperlayer];
         }
     }
+    
+//    @try {
+//        
+//    }
+//    @catch (NSException *exception) {
+//        NSLog(@"No observer for player");
+//    }
+//    @finally {
+//        
+//    }
 }
 
 - (void)prepareForReuse {
@@ -103,7 +109,7 @@
     PFFile *userImage = user[@"profileImage"];
     [userImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
     if (!error)
-            [imgViewProfile setImage:[UIImage imageWithData:data]];
+        [imgViewProfile setImage:[UIImage imageWithData:data]];
     }];
     
     [lblCaption setText:[objPost objectForKey:poFileDesc]];

@@ -56,6 +56,8 @@
 		841409B61A9F28C500105103 /* DPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 841409AF1A9F28C500105103 /* DPTextField.m */; };
 		841409B71A9F28C500105103 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 841409B21A9F28C500105103 /* IAPHelper.m */; };
 		841409B81A9F28C500105103 /* RageIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 841409B41A9F28C500105103 /* RageIAPHelper.m */; };
+		8430DB751AA860EE008C9A83 /* AVCamCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8430DB721AA860EE008C9A83 /* AVCamCaptureManager.m */; };
+		8430DB761AA860EE008C9A83 /* AVCamRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8430DB741AA860EE008C9A83 /* AVCamRecorder.m */; };
 		844759B41A822BE900650C13 /* cameraSel.png in Resources */ = {isa = PBXBuildFile; fileRef = 844759A01A822BE900650C13 /* cameraSel.png */; };
 		844759B51A822BE900650C13 /* cameraSel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 844759A11A822BE900650C13 /* cameraSel@2x.png */; };
 		844759B61A822BE900650C13 /* cameraUnsel.png in Resources */ = {isa = PBXBuildFile; fileRef = 844759A21A822BE900650C13 /* cameraUnsel.png */; };
@@ -256,6 +258,10 @@
 		841409B21A9F28C500105103 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		841409B31A9F28C500105103 /* RageIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RageIAPHelper.h; sourceTree = "<group>"; };
 		841409B41A9F28C500105103 /* RageIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RageIAPHelper.m; sourceTree = "<group>"; };
+		8430DB711AA860EE008C9A83 /* AVCamCaptureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamCaptureManager.h; sourceTree = "<group>"; };
+		8430DB721AA860EE008C9A83 /* AVCamCaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamCaptureManager.m; sourceTree = "<group>"; };
+		8430DB731AA860EE008C9A83 /* AVCamRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamRecorder.h; sourceTree = "<group>"; };
+		8430DB741AA860EE008C9A83 /* AVCamRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamRecorder.m; sourceTree = "<group>"; };
 		844759A01A822BE900650C13 /* cameraSel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraSel.png; sourceTree = "<group>"; };
 		844759A11A822BE900650C13 /* cameraSel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cameraSel@2x.png"; sourceTree = "<group>"; };
 		844759A21A822BE900650C13 /* cameraUnsel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraUnsel.png; sourceTree = "<group>"; };
@@ -663,6 +669,18 @@
 			path = "HelperClasses/IAP Helper";
 			sourceTree = "<group>";
 		};
+		8430DB701AA860EE008C9A83 /* AVCam */ = {
+			isa = PBXGroup;
+			children = (
+				8430DB711AA860EE008C9A83 /* AVCamCaptureManager.h */,
+				8430DB721AA860EE008C9A83 /* AVCamCaptureManager.m */,
+				8430DB731AA860EE008C9A83 /* AVCamRecorder.h */,
+				8430DB741AA860EE008C9A83 /* AVCamRecorder.m */,
+			);
+			name = AVCam;
+			path = HelperClasses/AVCam;
+			sourceTree = "<group>";
+		};
 		844759731A8211AF00650C13 /* Tabbar */ = {
 			isa = PBXGroup;
 			children = (
@@ -943,6 +961,7 @@
 		84E3484C1A6D94F800FDAF4B /* HelperClasses */ = {
 			isa = PBXGroup;
 			children = (
+				8430DB701AA860EE008C9A83 /* AVCam */,
 				841409AA1A9F28C500105103 /* DPTabbarController */,
 				841409AD1A9F28C500105103 /* DPTextField */,
 				841409B01A9F28C500105103 /* IAP Helper */,
@@ -1185,6 +1204,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8414099E1A9F288F00105103 /* CollectionPosts.m in Sources */,
+				8430DB751AA860EE008C9A83 /* AVCamCaptureManager.m in Sources */,
+				8430DB761AA860EE008C9A83 /* AVCamRecorder.m in Sources */,
 				8414097E1A9F280400105103 /* HomeViewController.m in Sources */,
 				841409811A9F280400105103 /* PostViewController.m in Sources */,
 				841409B51A9F28C500105103 /* DPTabbarController.m in Sources */,
@@ -1267,8 +1288,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Harry Similien (XB2A857555)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Harry Similien (XB2A857555)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Harry Similien (3DU4JSHLNJ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Harry Similien (3DU4JSHLNJ)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1289,7 +1310,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Donk Planet";
-				PROVISIONING_PROFILE = "ebe93a87-69a8-4268-a322-2a4d7519cda3";
+				PROVISIONING_PROFILE = "d544f925-6ff9-4ba5-8c74-58fd5a51b7b1";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1311,8 +1332,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Harry Similien (XB2A857555)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Harry Similien (XB2A857555)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Harry Similien (3DU4JSHLNJ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Harry Similien (3DU4JSHLNJ)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1326,7 +1347,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "Donk Planet";
-				PROVISIONING_PROFILE = "ebe93a87-69a8-4268-a322-2a4d7519cda3";
+				PROVISIONING_PROFILE = "d544f925-6ff9-4ba5-8c74-58fd5a51b7b1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1337,7 +1358,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Harry Similien (XB2A857555)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Harry Similien (3DU4JSHLNJ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ParseLibrary",
@@ -1348,7 +1369,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ebe93a87-69a8-4268-a322-2a4d7519cda3";
+				PROVISIONING_PROFILE = "d544f925-6ff9-4ba5-8c74-58fd5a51b7b1";
 			};
 			name = Debug;
 		};
@@ -1357,7 +1378,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Harry Similien (XB2A857555)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Harry Similien (3DU4JSHLNJ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ParseLibrary",
@@ -1368,7 +1389,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ebe93a87-69a8-4268-a322-2a4d7519cda3";
+				PROVISIONING_PROFILE = "d544f925-6ff9-4ba5-8c74-58fd5a51b7b1";
 			};
 			name = Release;
 		};

@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import "SignUpViewController.h"
 
-@interface LoginViewController () {
+@interface LoginViewController () <UITextFieldDelegate> {
     
     __weak IBOutlet UITextField *txtFieldUsername;
     __weak IBOutlet UITextField *txtFieldPassword;
@@ -106,6 +106,19 @@
     return message;
 }
 
+#pragma mark - UITextField Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    if (textField == txtFieldUsername)
+        [txtFieldPassword becomeFirstResponder];
+    else {
+        [textField resignFirstResponder];
+        [self buttonLoginTouched:btnLogin];
+    }
+    return (textField == txtFieldPassword);
+}
+
 #pragma mark - Button IBActions
 
 - (IBAction)buttonLoginTouched:(id)sender {
@@ -148,8 +161,15 @@
 - (IBAction)buttonForgotPasswordTouched:(id)sender {
 }
 
-- (IBAction)buttonSignUpTouched:(id)sender {
+#pragma mark - View Touch Methods
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
+    UIView *viewTouched = [[touches anyObject] view];
+    if (![viewTouched isKindOfClass:[UITextField class]]) {
+        [txtFieldPassword resignFirstResponder];
+        [txtFieldUsername resignFirstResponder];
+    }
 }
 
 @end

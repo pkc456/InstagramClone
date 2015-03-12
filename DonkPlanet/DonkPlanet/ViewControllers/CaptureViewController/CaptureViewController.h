@@ -11,5 +11,6 @@
 @interface CaptureViewController : UIViewController
 
 @property (strong, nonatomic) UIImage *imageCaptured;
+@property (strong, nonatomic) NSURL *urlVideo;
 
 @end

@@ -58,6 +58,10 @@
 
 - (void)removeAVPlayer {
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:AVPlayerItemDidPlayToEndTimeNotification
+                                                  object:[avPlayer currentItem]];
+    
     if ([avPlayer rate] > 0.5) {
         [avPlayer pause];
         [avPlayer removeObserver:self forKeyPath:@"rate" context:nil];
@@ -131,6 +135,11 @@
             avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
             layer.frame = CGRectMake(0, 0, viewVideo.frame.size.width, viewVideo.frame.size.height);
             [viewVideo.layer addSublayer: layer];
+            
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(itemDidFinishPlaying:)
+                                                         name:AVPlayerItemDidPlayToEndTimeNotification
+                                                       object:[avPlayer currentItem]];
         }
         else {
             if (rowNumber != lastIndex) {
@@ -158,6 +167,14 @@
             }
         }];
     }
+}
+
+- (void)itemDidFinishPlaying:(NSNotification *) notification {
+    // Will be called when AVPlayer finishes playing playerItem
+    
+    [avPlayer setRate:0.0f];
+    AVPlayerItem *playerItem = [notification object];
+    [playerItem seekToTime:kCMTimeZero];
 }
 
 #pragma mark - Hide Play/Pause Button

@@ -172,7 +172,17 @@
 
 - (void)postTheFile:(UIBarButtonItem *)sender {
     
-    if (imgCaptured) {
+    if (![txtFieldCaption.text length]) {
+        [[[UIAlertView alloc] initWithTitle:@"Caption Missing"
+                                    message:@"Please provide caption for this media."
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil, nil] show];
+        return;
+    }
+    
+    [self resignResponders];
+    if (self.imageCaptured) {
         
         PFUser *currentUser = [PFUser currentUser];
         
@@ -279,8 +289,13 @@
         else
             NSLog(@"Image not uploaded");
         
-        [self uploadMovieOnServer];
-    }];
+        [self performSelectorOnMainThread:@selector(uploadMovieOnServer)
+                               withObject:nil
+                            waitUntilDone:NO];
+    }
+                           progressBlock:^(int percentDone) {
+                               [progressUpload setProgress:percentDone/200.f];
+                           }];
 }
 
 - (void)uploadMovieOnServer {
@@ -289,15 +304,18 @@
     
     if (currentUser) {
         
-        NSString *imageFileName = [NSString stringWithFormat:@"%@.mov", fileName];
+        NSArray *parts = [[self.urlVideo absoluteString] componentsSeparatedByString:@"/"];
+        NSString *filename = [parts lastObject];
+        NSArray *arrNames = [filename componentsSeparatedByString:@"."];
         
-        NSString *pathForFile = [[NSBundle mainBundle] pathForResource:@"2minute" ofType:@"mov"];
-        NSData *movieData = [NSData dataWithContentsOfFile:pathForFile];
+        NSString *imageFileName = [NSString stringWithFormat:@"%@.%@", fileName, [arrNames lastObject]];
+        
+        NSData *movieData = [NSData dataWithContentsOfFile:[self.urlVideo path]];
         PFFile *movieFile = [PFFile fileWithName:imageFileName data:movieData];
         [movieFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             
             PFObject *userMovie = [PFObject objectWithClassName:@"Post"];
-            userMovie[@"fileDesc"] = @"First Movie";
+            userMovie[@"fileDesc"] = txtFieldCaption.text;
             userMovie[@"filePosted"] = movieFile;
             userMovie[@"fileImage"] = fileImage;
             userMovie[@"fileUsername"] = currentUser.username;
@@ -329,7 +347,11 @@
                                   cancelButtonTitle:cancelTitle
                                   otherButtonTitles:otherTitle, nil] show];
             }];
-        }];
+        }
+                               progressBlock:^(int percentDone) {
+                                   float currentProgress = progressUpload.progress + percentDone/200.f;
+                                   [progressUpload setProgress:currentProgress];
+                               }];
     }
 }
 

@@ -14,7 +14,7 @@
 #import "AVCamCaptureManager.h"
 #import "AVCamRecorder.h"
 
-@interface CameraViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCamCaptureManagerDelegate, UIGestureRecognizerDelegate> {
+@interface CameraViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCamCaptureManagerDelegate, UIGestureRecognizerDelegate, UIVideoEditorControllerDelegate> {
     
     __weak IBOutlet UIImageView *imgPhoto;
     __weak IBOutlet UIButton *btnPhotoVideoToggle;
@@ -31,7 +31,7 @@
     AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
     
     BOOL flashOn, movieCapture;
-    UIView *viewLoading;
+    UIView *viewLoading, *viewLoadingAnalyse;
     
     NSTimer *timerVideo;
 }
@@ -119,19 +119,112 @@
     }
 }
 
+#pragma mark - Check Video Time
+
+- (void)checkPickedVideoWithPath:(NSString *)videoPath withAssetURL:(NSString *)assetURL {
+    
+    AVURLAsset *avUrl = [AVURLAsset assetWithURL:[NSURL URLWithString:assetURL]];
+    CMTime time = [avUrl duration];
+    int seconds = ceil(time.value/time.timescale);
+    
+    if (seconds > 30) {
+        UIVideoEditorController* videoEditor = [[UIVideoEditorController alloc] init];
+        videoEditor.delegate = self;
+        if ( [UIVideoEditorController canEditVideoAtPath:videoPath] ) {
+            videoEditor.videoPath = videoPath;
+            videoEditor.videoMaximumDuration = 30.0;
+            [self presentViewController:videoEditor animated:YES completion:nil];
+        }
+        else
+            NSLog( @"can't edit video at %@", videoPath );
+    }
+    else {
+        [_DPFunctions hideLoadingView:viewLoadingAnalyse];
+        [self pickedVideoWithURL:videoPath];
+    }
+}
+
+- (void)videoEditorController:(UIVideoEditorController *)editor
+     didSaveEditedVideoToPath:(NSString *)editedVideoPath {
+    
+    [_DPFunctions hideLoadingView:viewLoadingAnalyse];
+    [editor dismissViewControllerAnimated:YES completion:nil];
+    [self pickedVideoWithURL:editedVideoPath];
+}
+
+- (void)videoEditorController:(UIVideoEditorController *)editor
+             didFailWithError:(NSError *)error {
+    
+    [_DPFunctions hideLoadingView:viewLoadingAnalyse];
+    [[[UIAlertView alloc] initWithTitle:@"Error"
+                                message:@"There is error editing video."
+                               delegate:nil
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles:nil, nil] show];
+    [editor dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)videoEditorControllerDidCancel:(UIVideoEditorController *)editor {
+    [_DPFunctions hideLoadingView:viewLoadingAnalyse];
+    [editor dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Video Picked
+
+- (void)pickedVideoWithURL:(NSString *)videoPath {
+
+    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:_DP_StoryboardName
+                                                             bundle:nil];
+    CaptureViewController *objCaptureView = (CaptureViewController *)[mainStoryBoard instantiateViewControllerWithIdentifier:_DP_CaptureViewStrbdID];
+    [objCaptureView setImageCaptured:nil];
+    [objCaptureView setUrlVideo:[NSURL URLWithString:videoPath]];
+    [self.navigationController pushViewController:objCaptureView animated:YES];
+}
+
 #pragma mark - UIImagePickerController Delegates
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    [picker dismissViewControllerAnimated:YES completion:^ {
+    NSLog(@"Info : %@", info);
+    if([info[UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
+    
+        [picker dismissViewControllerAnimated:YES completion:^ {
         
-        [imgPhoto setImage:[info objectForKey:UIImagePickerControllerEditedImage]];
-        UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:_DP_StoryboardName
+            [imgPhoto setImage:[info objectForKey:UIImagePickerControllerEditedImage]];
+            UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:_DP_StoryboardName
                                                                  bundle:nil];
-        CaptureViewController *objCaptureView = (CaptureViewController *)[mainStoryBoard instantiateViewControllerWithIdentifier:_DP_CaptureViewStrbdID];
-        [objCaptureView setImageCaptured:[info objectForKey:UIImagePickerControllerEditedImage]];
-        [self.navigationController pushViewController:objCaptureView animated:YES];
-    }];
+            CaptureViewController *objCaptureView = (CaptureViewController *)[mainStoryBoard instantiateViewControllerWithIdentifier:_DP_CaptureViewStrbdID];
+            [objCaptureView setImageCaptured:[info objectForKey:UIImagePickerControllerEditedImage]];
+            [self.navigationController pushViewController:objCaptureView animated:YES];
+        }];
+    }
+    else {
+        
+        NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
+        NSURL *assetURL = [info objectForKey:UIImagePickerControllerReferenceURL];
+        
+        NSData *videoData = [NSData dataWithContentsOfURL:videoURL];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *tempPath = [documentsDirectory stringByAppendingFormat:@"/videoCopied.mp4"];
+        
+        BOOL success = [videoData writeToFile:tempPath atomically:NO];
+        
+        [picker dismissViewControllerAnimated:NO completion:^ {
+
+            if (success) {
+                viewLoadingAnalyse = [_DPFunctions showLoadingViewWithText:@"Analyzing..." inView:viewVideoPreview];
+                [self checkPickedVideoWithPath:tempPath withAssetURL:[assetURL absoluteString]];
+            }
+            else {
+                [[[UIAlertView alloc] initWithTitle:@"Video Error"
+                                            message:@"Can't pick this video, there might be error with video format or try again."
+                                           delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil, nil] show];
+            }
+        }];
+    }
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
@@ -282,10 +375,8 @@
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.allowsEditing = YES;
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    else
-        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    picker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
     
     [self presentViewController:picker animated:YES completion:^ {
         [picker.navigationBar setTintColor:[UIColor blackColor]];
@@ -365,12 +456,13 @@
         
         [_DPFunctions hideLoadingView:viewLoading];
         
-        UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:_DP_StoryboardName
-                                                                 bundle:nil];
-        CaptureViewController *objCaptureView = (CaptureViewController *)[mainStoryBoard instantiateViewControllerWithIdentifier:_DP_CaptureViewStrbdID];
-        [objCaptureView setImageCaptured:nil];
-        [objCaptureView setUrlVideo:urlVideo];
-        [self.navigationController pushViewController:objCaptureView animated:YES];
+        [self pickedVideoWithURL:[urlVideo absoluteString]];
+//        UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:_DP_StoryboardName
+//                                                                 bundle:nil];
+//        CaptureViewController *objCaptureView = (CaptureViewController *)[mainStoryBoard instantiateViewControllerWithIdentifier:_DP_CaptureViewStrbdID];
+//        [objCaptureView setImageCaptured:nil];
+//        [objCaptureView setUrlVideo:urlVideo];
+//        [self.navigationController pushViewController:objCaptureView animated:YES];
     });
 }
 

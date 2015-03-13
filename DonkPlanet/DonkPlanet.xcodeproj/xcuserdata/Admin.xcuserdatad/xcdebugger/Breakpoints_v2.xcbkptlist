@@ -346,28 +346,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DonkPlanet/ViewControllers/CameraViewController/CameraViewController.m"
-            timestampString = "447872594.939486"
+            timestampString = "447934069.557724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
-            landmarkName = "-buttonPhotoLibraryTouched:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DonkPlanet/ViewControllers/CaptureViewController/CaptureViewController.m"
-            timestampString = "447866036.33067"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "345"
-            endingLineNumber = "345"
-            landmarkName = "-buttonPlayPauseAction:"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "-checkPickedVideoWithPath:withAssetURL:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

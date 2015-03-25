@@ -12,6 +12,7 @@
 
 - (void)updateLastPlayingIndex:(NSInteger)playingIndex
                   withSeekTime:(CGFloat)seekTime;
+- (void)deleteTheObject:(PFObject *)objToDelete;
 
 @end
 

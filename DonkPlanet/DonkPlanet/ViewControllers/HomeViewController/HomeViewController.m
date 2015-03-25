@@ -19,6 +19,7 @@
     
     UIView *viewLoading;
     NSMutableArray *arrPosts;
+    NSMutableArray *arrFollowing;
     NSMutableDictionary *dictPosts;
     NSInteger lastPlayingIndex;
     NSMutableDictionary *dictLastPlayingInfo;
@@ -69,26 +70,56 @@
         [self.navigationController presentViewController:objLoginView animated:NO completion:nil];
     }
     else {
-        [self fetchUserPosts];
+        [self fetchFollowing];
         [imgSplash setHidden:YES];
     }
 }
 
 #pragma mark - Fetch User Posts
 
+- (void)fetchFollowing {
+    
+    viewLoading = [_DPFunctions showLoadingViewWithText:@"Fetching..." inView:self.view];
+    
+    PFQuery *followingQuery = [PFQuery queryWithClassName:@"Follow"];
+    [followingQuery whereKey:@"followUserPointer" equalTo:[PFUser currentUser]];
+    [followingQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            if (arrFollowing) {
+                [arrFollowing removeAllObjects];
+                arrFollowing = nil;
+            }
+            arrFollowing = [[NSMutableArray alloc] init];
+            
+            for (int i = 0; i < [objects count]; i ++) {
+                PFObject *objAtIndex = [objects objectAtIndex:i];
+                [arrFollowing addObject:objAtIndex.objectId];
+            }
+            [arrFollowing addObject:[PFUser currentUser].objectId];
+            [self fetchUserPosts];
+        }
+        else {
+            [_DPFunctions hideLoadingView:viewLoading];
+            [[[UIAlertView alloc] initWithTitle:@"Error"
+                                        message:@"Unable to fetch any posts right now"
+                                       delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil, nil] show];
+        }
+    }];
+}
+
 - (void)fetchUserPosts {
     
     if (!dictPosts)
         dictPosts = [[NSMutableDictionary alloc] init];
     
-    viewLoading = [_DPFunctions showLoadingViewWithText:@"Fetching..." inView:self.view];
-    
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query whereKey:@"fileUserID" equalTo:[PFUser currentUser].objectId];
+    [query whereKey:@"fileUserID" containedIn:arrFollowing];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [_DPFunctions hideLoadingView:viewLoading];
         if (!error) {
-            [_DPFunctions hideLoadingView:viewLoading];
             // The find succeeded.
             NSLog(@"Successfully retrieved %d scores.", objects.count);
             // Do something with the found objects
@@ -141,14 +172,25 @@
                   withSeekTime:(CGFloat)seekTime {
     
     lastPlayingIndex = playingIndex;
-    
-//    if (!dictLastPlayingInfo)
-//        dictLastPlayingInfo = [[NSMutableDictionary alloc] init];
-//    else
-//        [dictLastPlayingInfo removeAllObjects];
-//    
-//    [dictLastPlayingInfo setObject:[NSNumber numberWithFloat:seekTime]
-//                            forKey:[NSNumber numberWithInteger:playingIndex]];
+}
+
+- (void)deleteTheObject:(PFObject *)objToDelete {
+
+    viewLoading = [_DPFunctions showLoadingViewWithText:@"Deleting..." inView:self.view];
+    [objToDelete deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+        NSString *title = @"Post";
+        NSString *message = @"The post can't be deleted right now, please try later";
+        if (!error)
+            message = @"The post has been deleted successfully.";
+        
+        [[[UIAlertView alloc] initWithTitle:title
+                                    message:message
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil, nil] show];
+        [self fetchUserPosts];
+    }];
 }
 
 #pragma mark - UITableView Delegate & DataSource

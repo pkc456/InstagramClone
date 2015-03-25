@@ -95,7 +95,6 @@
 
 - (void)fillUserCellForIndex:(PFUser *)user {
     
-    [user fetchIfNeeded];
     [user fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if (!error) {
             thisCellUser = user;
@@ -111,7 +110,6 @@
     NSString *otherUser = follower ? @"followUserPointer" : @"followingUserPointer";
 
     thisCellUser = [thisObject objectForKey:otherUser];
-    [thisCellUser fetchIfNeeded];
     [thisCellUser fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if (!error) {
             [lblUsername setText:thisCellUser.username];

@@ -20,6 +20,8 @@
     __weak IBOutlet UIView *viewVideo;
     __weak IBOutlet UIButton *btnPlayPause;
     __weak IBOutlet UIImageView *imgViewPlayPause;
+    __weak IBOutlet UIButton *btnDelete;
+    __weak IBOutlet UIView *viewDelete;
     
     NSDate *dateToHide;
     
@@ -28,6 +30,7 @@
     NSString *poFileDesc;
     NSString *poFilePosted;
     AVPlayer *avPlayer;
+    PFObject *thisObject;
 }
 
 @end
@@ -48,6 +51,9 @@
     
     [viewVideo.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [viewVideo.layer setBorderWidth:1.0f];
+    
+    [btnDelete setBackgroundColor:[_DPFunctions colorWithR:250 g:130 b:127 alpha:1.0f]];
+    [btnDelete setEnabled:NO];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -86,6 +92,13 @@
 
 - (void)prepareForReuse {
     
+    CGFloat toSet = self.frame.size.width - 5;
+    CGRect frameDelete = btnDelete.frame;
+    frameDelete.origin.x = toSet;
+    [btnDelete setFrame:frameDelete];
+    [btnDelete setEnabled:NO];
+    [btnDelete setBackgroundColor:[_DPFunctions colorWithR:250 g:130 b:127 alpha:1.0f]];
+    
     [imgViewPost setImage:[UIImage imageNamed:@"placeholder"]];
     [self removeAVPlayer];
 }
@@ -95,25 +108,21 @@
 - (void)fillHomeCellWithWithObject:(PFObject *)objPost
                      withRowNumber:(NSInteger)rowNumber
               withLastPlayingIndex:(NSInteger)lastIndex {
-
-    // Will be used when followers will be updated
     
-//    NSArray *names = @[@"Jonathan Walsh",
-//                       @"Dario Wunsch",
-//                       @"Shawn Simon"];
-//    [query whereKey:@"playerName" containedIn:names];
-    
+    thisObject = objPost;
     [lblTime setText:[_DPFunctions setTimeElapsedForDate:objPost.createdAt]];
     
     PFUser *user = [objPost objectForKey:poUserPointer];
     
-    [lblUsername setText:user.username];
-    [lblEmail setText:user.email];
-
-    PFFile *userImage = user[@"profileImage"];
-    [userImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-    if (!error)
-        [imgViewProfile setImage:[UIImage imageWithData:data]];
+    [user fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        [lblUsername setText:user.username];
+        [lblEmail setText:user.email];
+        
+        PFFile *userImage = user[@"profileImage"];
+        [userImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error)
+                [imgViewProfile setImage:[UIImage imageWithData:data]];
+        }];
     }];
     
     [lblCaption setText:[objPost objectForKey:poFileDesc]];
@@ -167,6 +176,9 @@
             }
         }];
     }
+    
+    PFUser *currentUser = [PFUser currentUser];
+    [viewDelete setHidden:![currentUser isEqual:user]];
 }
 
 - (void)itemDidFinishPlaying:(NSNotification *) notification {
@@ -235,6 +247,43 @@
         }
         [imgViewPlayPause setImage:[UIImage imageNamed:strImageName]];
     }
+}
+
+#pragma mark - IBAction for Current User's Posts
+
+- (IBAction)buttonSlideToDelete:(UIButton *)sender {
+    
+    CGRect btnFrame = sender.frame;
+    BOOL toSetBack = (btnFrame.origin.x >= 0);
+    
+    btnFrame.origin.x = toSetBack ? -55 : 0;
+    
+    [UIView animateWithDuration:0.15f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^ {
+                         [sender setFrame:btnFrame];
+                         
+                         CGFloat toSet = self.frame.size.width - (toSetBack ? 60 : 5);
+                         CGRect frameDelete = btnDelete.frame;
+                         frameDelete.origin.x = toSet;
+                         [btnDelete setFrame:frameDelete];
+                     }
+                     completion:^(BOOL finished) {
+                         
+                         UIColor *colorToSet = [_DPFunctions colorWithR:250 g:63 b:37 alpha:1.0f];
+                         if (!toSetBack)
+                             colorToSet = [_DPFunctions colorWithR:250 g:130 b:127 alpha:1.0f];
+                         
+                         [btnDelete setBackgroundColor:colorToSet];
+                         [btnDelete setEnabled:toSetBack];
+                     }];
+}
+
+- (IBAction)buttonDeleteUserPost:(id)sender {
+
+    if ([self.delegate respondsToSelector:@selector(deleteTheObject:)])
+        [self.delegate deleteTheObject:thisObject];
 }
 
 @end

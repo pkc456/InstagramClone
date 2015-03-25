@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DonkPlanet/ViewsAndCells/UserCell/UserCell.m"
-            timestampString = "446804060.377765"
+            timestampString = "448965198.086659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "-fillUserCellForIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DonkPlanet/ViewsAndCells/UserCell/UserCell.m"
-            timestampString = "446804060.377765"
+            timestampString = "448965198.086659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "-fillUserCellForFollower:andUserObject:"
             landmarkType = "5">
          </BreakpointContent>
@@ -352,6 +352,38 @@
             startingLineNumber = "126"
             endingLineNumber = "126"
             landmarkName = "-checkPickedVideoWithPath:withAssetURL:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DonkPlanet/ViewControllers/HomeViewController/HomeViewController.m"
+            timestampString = "448970799.245909"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "-fetchUserPosts"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DonkPlanet/ViewControllers/HomeViewController/HomeViewController.m"
+            timestampString = "448970869.475527"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "-fetchFollowing"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -106,8 +107,50 @@
                                 <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KNP-Z3-9sP">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chJ-ui-kcz">
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="82"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonSlideToDelete:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="1Yn-1B-Pxt"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2N1-81-izy">
+                                        <rect key="frame" x="315" y="0.0" width="60" height="82"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="3Mc-PM-Y2a"/>
+                                            <constraint firstAttribute="height" constant="82" id="fDw-Yb-JTS"/>
+                                        </constraints>
+                                        <state key="normal" image="trashIcon.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonDeleteUserPost:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JRG-fz-pTY"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="chJ-ui-kcz" firstAttribute="leading" secondItem="KNP-Z3-9sP" secondAttribute="leading" id="0Cv-QF-FnF"/>
+                                    <constraint firstItem="chJ-ui-kcz" firstAttribute="top" secondItem="KNP-Z3-9sP" secondAttribute="top" id="GCs-NC-q3Q"/>
+                                    <constraint firstAttribute="height" constant="82" id="H5D-qV-UVJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="chJ-ui-kcz" secondAttribute="bottom" id="NYi-gp-g5J"/>
+                                    <constraint firstAttribute="trailing" secondItem="chJ-ui-kcz" secondAttribute="trailing" constant="5" id="Rgt-cZ-Sis"/>
+                                    <constraint firstItem="2N1-81-izy" firstAttribute="top" secondItem="KNP-Z3-9sP" secondAttribute="top" id="f0b-oX-99m"/>
+                                    <constraint firstItem="2N1-81-izy" firstAttribute="leading" secondItem="chJ-ui-kcz" secondAttribute="trailing" id="j9E-jV-8PR"/>
+                                    <constraint firstAttribute="width" constant="320" id="n4l-qe-E1u"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="KNP-Z3-9sP" firstAttribute="top" secondItem="KbR-t1-6W3" secondAttribute="top" id="Uvy-AD-kI7"/>
+                            <constraint firstItem="KNP-Z3-9sP" firstAttribute="leading" secondItem="KbR-t1-6W3" secondAttribute="leading" id="YBS-9H-3V2"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <constraints>
@@ -136,6 +179,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="btnDelete" destination="2N1-81-izy" id="j8H-4B-zDd"/>
                 <outlet property="btnPlayPause" destination="VOC-SJ-QBU" id="aA5-Oo-Slr"/>
                 <outlet property="imgViewPlayPause" destination="Neb-Xe-d0t" id="p8J-MP-sC7"/>
                 <outlet property="imgViewPost" destination="84z-GU-xNP" id="JPW-kq-qSl"/>
@@ -144,6 +188,7 @@
                 <outlet property="lblEmail" destination="ab7-lx-EDn" id="oHM-zw-epI"/>
                 <outlet property="lblTime" destination="aEv-cN-7Ze" id="TJF-c0-udJ"/>
                 <outlet property="lblUsername" destination="meH-Eo-xOm" id="hHo-gJ-rDg"/>
+                <outlet property="viewDelete" destination="KNP-Z3-9sP" id="nok-JZ-a2P"/>
                 <outlet property="viewVideo" destination="zoC-JG-mNw" id="l3a-Hu-Sq8"/>
             </connections>
             <point key="canvasLocation" x="224" y="353"/>
@@ -153,5 +198,6 @@
         <image name="day_clock_icon.png" width="9" height="9"/>
         <image name="placeholder.png" width="320" height="320"/>
         <image name="play.png" width="50" height="58"/>
+        <image name="trashIcon.png" width="30" height="30"/>
     </resources>
 </document>

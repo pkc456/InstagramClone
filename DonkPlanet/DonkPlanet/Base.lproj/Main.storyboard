@@ -931,8 +931,50 @@
                                         <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mYr-vj-gmX">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Gt-kq-NvK">
+                                                <rect key="frame" x="0.0" y="0.0" width="315" height="93"/>
+                                                <state key="normal">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="buttonSlideToDelete:" destination="kgt-l5-Ntp" eventType="touchUpInside" id="rlk-hr-4y5"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sea-DT-m7h">
+                                                <rect key="frame" x="315" y="0.0" width="60" height="93"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="CR1-E1-PaI"/>
+                                                    <constraint firstAttribute="height" constant="93" id="Zbu-hg-vc5"/>
+                                                </constraints>
+                                                <state key="normal" image="trashIcon.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="buttonDeleteUserPost:" destination="kgt-l5-Ntp" eventType="touchUpInside" id="dKV-pv-rqV"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="4Gt-kq-NvK" firstAttribute="top" secondItem="mYr-vj-gmX" secondAttribute="top" id="2xe-hu-I83"/>
+                                            <constraint firstItem="Sea-DT-m7h" firstAttribute="top" secondItem="mYr-vj-gmX" secondAttribute="top" id="3Yc-UL-sbM"/>
+                                            <constraint firstItem="Sea-DT-m7h" firstAttribute="leading" secondItem="4Gt-kq-NvK" secondAttribute="trailing" id="9Ox-gE-nYo"/>
+                                            <constraint firstItem="4Gt-kq-NvK" firstAttribute="leading" secondItem="mYr-vj-gmX" secondAttribute="leading" id="GXu-em-J1a"/>
+                                            <constraint firstAttribute="bottom" secondItem="4Gt-kq-NvK" secondAttribute="bottom" id="Kku-nd-2P3"/>
+                                            <constraint firstAttribute="trailing" secondItem="4Gt-kq-NvK" secondAttribute="trailing" constant="5" id="Wpv-ga-RbE"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="mYr-vj-gmX" firstAttribute="leading" secondItem="EsU-kF-GeZ" secondAttribute="leading" id="WKA-Tk-uqy"/>
+                                    <constraint firstAttribute="bottom" secondItem="mYr-vj-gmX" secondAttribute="bottom" id="app-3E-PoL"/>
+                                    <constraint firstAttribute="trailing" secondItem="mYr-vj-gmX" secondAttribute="trailing" id="ekj-dd-AY5"/>
+                                    <constraint firstItem="mYr-vj-gmX" firstAttribute="top" secondItem="EsU-kF-GeZ" secondAttribute="top" id="lRX-Yh-8ik"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -967,6 +1009,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="btnDelete" destination="Sea-DT-m7h" id="AxB-vy-58a"/>
                         <outlet property="btnPlayPause" destination="VZr-Cr-xKF" id="FPd-SN-oSs"/>
                         <outlet property="imgViewPlayPause" destination="eQO-1a-YG2" id="mAs-R6-7rm"/>
                         <outlet property="imgViewPost" destination="V8I-Xe-6x5" id="2Ro-mk-Rsb"/>
@@ -975,6 +1018,7 @@
                         <outlet property="lblEmail" destination="4WQ-UR-VkW" id="Llj-bB-d29"/>
                         <outlet property="lblTime" destination="NDo-h0-8w3" id="2Qv-hn-NHp"/>
                         <outlet property="lblUsername" destination="YGU-Lf-FKm" id="9uA-ja-OKs"/>
+                        <outlet property="viewDelete" destination="mYr-vj-gmX" id="Zol-7U-Ew9"/>
                         <outlet property="viewVideo" destination="VPn-Aa-L4P" id="3Ma-g0-Cul"/>
                     </connections>
                 </viewController>
@@ -1268,6 +1312,7 @@
         <image name="refresh_icon.png" width="19" height="22"/>
         <image name="searchSel.png" width="64" height="49"/>
         <image name="searchUnsel.png" width="64" height="49"/>
+        <image name="trashIcon.png" width="30" height="30"/>
         <image name="userSel.png" width="64" height="49"/>
         <image name="userUnsel.png" width="64" height="49"/>
     </resources>

@@ -56,6 +56,8 @@
 		841409B61A9F28C500105103 /* DPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 841409AF1A9F28C500105103 /* DPTextField.m */; };
 		841409B71A9F28C500105103 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 841409B21A9F28C500105103 /* IAPHelper.m */; };
 		841409B81A9F28C500105103 /* RageIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 841409B41A9F28C500105103 /* RageIAPHelper.m */; };
+		842CAE631AC2B58C007494F2 /* trashIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 842CAE611AC2B58C007494F2 /* trashIcon.png */; };
+		842CAE641AC2B58C007494F2 /* trashIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842CAE621AC2B58C007494F2 /* trashIcon@2x.png */; };
 		8430DB751AA860EE008C9A83 /* AVCamCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8430DB721AA860EE008C9A83 /* AVCamCaptureManager.m */; };
 		8430DB761AA860EE008C9A83 /* AVCamRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8430DB741AA860EE008C9A83 /* AVCamRecorder.m */; };
 		844759B41A822BE900650C13 /* cameraSel.png in Resources */ = {isa = PBXBuildFile; fileRef = 844759A01A822BE900650C13 /* cameraSel.png */; };
@@ -256,6 +258,8 @@
 		841409B21A9F28C500105103 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		841409B31A9F28C500105103 /* RageIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RageIAPHelper.h; sourceTree = "<group>"; };
 		841409B41A9F28C500105103 /* RageIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RageIAPHelper.m; sourceTree = "<group>"; };
+		842CAE611AC2B58C007494F2 /* trashIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trashIcon.png; sourceTree = "<group>"; };
+		842CAE621AC2B58C007494F2 /* trashIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trashIcon@2x.png"; sourceTree = "<group>"; };
 		8430DB711AA860EE008C9A83 /* AVCamCaptureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamCaptureManager.h; sourceTree = "<group>"; };
 		8430DB721AA860EE008C9A83 /* AVCamCaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamCaptureManager.m; sourceTree = "<group>"; };
 		8430DB731AA860EE008C9A83 /* AVCamRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamRecorder.h; sourceTree = "<group>"; };
@@ -707,6 +711,8 @@
 		844759C81A8236F600650C13 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				842CAE611AC2B58C007494F2 /* trashIcon.png */,
+				842CAE621AC2B58C007494F2 /* trashIcon@2x.png */,
 				8485137D1A8E02BE00B94C8D /* pause.png */,
 				8485137E1A8E02BE00B94C8D /* pause@2x.png */,
 				8485137F1A8E02BE00B94C8D /* play.png */,
@@ -1082,6 +1088,7 @@
 				841409A91A9F288F00105103 /* UsersView.xib in Resources */,
 				844759C21A822BE900650C13 /* searchUnsel.png in Resources */,
 				8465BE241A88AC09008A3AA7 /* placeholder.png in Resources */,
+				842CAE631AC2B58C007494F2 /* trashIcon.png in Resources */,
 				848513841A8E02BE00B94C8D /* play@2x.png in Resources */,
 				844759B41A822BE900650C13 /* cameraSel.png in Resources */,
 				848513831A8E02BE00B94C8D /* play.png in Resources */,
@@ -1106,6 +1113,7 @@
 				844759FE1A82602300650C13 /* cameraChange.png in Resources */,
 				845D28831A70A7D70025FC21 /* blank_img@2x.png in Resources */,
 				84475A091A826A8C00650C13 /* flashOn@2x.png in Resources */,
+				842CAE641AC2B58C007494F2 /* trashIcon@2x.png in Resources */,
 				844759D61A8236F600650C13 /* small_thumb@2x.png in Resources */,
 				8414099F1A9F288F00105103 /* CollectionPosts.xib in Resources */,
 				84475A011A82602300650C13 /* cross_icon@2x.png in Resources */,

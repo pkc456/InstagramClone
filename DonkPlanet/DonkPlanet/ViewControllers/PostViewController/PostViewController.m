@@ -20,9 +20,12 @@
     __weak IBOutlet UIView *viewVideo;
     __weak IBOutlet UIButton *btnPlayPause;
     __weak IBOutlet UIImageView *imgViewPlayPause;
+    __weak IBOutlet UIButton *btnDelete;
+    __weak IBOutlet UIView *viewDelete;
     
     AVPlayer *avPlayer;
     NSDate *dateToHide;
+    UIView *viewLoading;
 }
 
 @end
@@ -82,6 +85,9 @@
     
     [viewVideo.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [viewVideo.layer setBorderWidth:1.0f];
+    
+    [btnDelete setBackgroundColor:[_DPFunctions colorWithR:250 g:130 b:127 alpha:1.0f]];
+    [btnDelete setEnabled:NO];
 }
 
 - (void)setupPostInfo {
@@ -196,6 +202,57 @@
         }
         [imgViewPlayPause setImage:[UIImage imageNamed:strImageName]];
     }
+}
+
+#pragma mark - IBAction Delete
+
+- (IBAction)buttonSlideToDelete:(UIButton *)sender {
+    
+    CGRect btnFrame = sender.frame;
+    BOOL toSetBack = (btnFrame.origin.x >= 0);
+    
+    btnFrame.origin.x = toSetBack ? -55 : 0;
+    
+    [UIView animateWithDuration:0.15f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^ {
+                         [sender setFrame:btnFrame];
+                         
+                         CGFloat toSet = self.view.frame.size.width - (toSetBack ? 60 : 5);
+                         CGRect frameDelete = btnDelete.frame;
+                         frameDelete.origin.x = toSet;
+                         [btnDelete setFrame:frameDelete];
+                     }
+                     completion:^(BOOL finished) {
+                         
+                         UIColor *colorToSet = [_DPFunctions colorWithR:250 g:63 b:37 alpha:1.0f];
+                         if (!toSetBack)
+                             colorToSet = [_DPFunctions colorWithR:250 g:130 b:127 alpha:1.0f];
+                         
+                         [btnDelete setBackgroundColor:colorToSet];
+                         [btnDelete setEnabled:toSetBack];
+                     }];
+}
+
+- (IBAction)buttonDeleteUserPost:(id)sender {
+    
+    viewLoading = [_DPFunctions showLoadingViewWithText:@"Deleting..." inView:self.view];
+    [self.objPost deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+        NSString *title = @"Post";
+        NSString *message = @"The post can't be deleted right now, please try later";
+        if (!error) {
+            message = @"The post has been deleted successfully.";
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        
+        [[[UIAlertView alloc] initWithTitle:title
+                                    message:message
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil, nil] show];
+    }];
 }
 
 @end
